@@ -1,0 +1,501 @@
+date,home_team,away_team,home_goals,away_goals,home_corners,away_corners,total_corners,league,season
+2023-08-12,Brentford,Crystal Palace,0,3,8,1,9,premier_league,2023/24
+2023-08-12,West Ham,Liverpool,4,0,4,6,10,premier_league,2023/24
+2023-08-13,Brentford,Fulham,1,0,5,4,9,premier_league,2023/24
+2023-08-14,Tottenham,Manchester United,2,2,7,4,11,premier_league,2023/24
+2023-08-14,Brentford,Manchester City,0,2,2,5,7,premier_league,2023/24
+2023-08-14,Crystal Palace,Chelsea,0,1,2,5,7,premier_league,2023/24
+2023-08-15,Everton,West Ham,2,0,2,3,5,premier_league,2023/24
+2023-08-15,Fulham,Manchester City,4,1,3,2,5,premier_league,2023/24
+2023-08-16,Luton,West Ham,1,1,3,5,8,premier_league,2023/24
+2023-08-17,Newcastle,Chelsea,0,3,4,2,6,premier_league,2023/24
+2023-08-19,Burnley,Manchester United,1,3,1,5,6,premier_league,2023/24
+2023-08-21,Sheffield United,Luton,1,0,8,5,13,premier_league,2023/24
+2023-08-22,Aston Villa,Manchester City,2,1,7,5,12,premier_league,2023/24
+2023-08-22,Crystal Palace,Liverpool,0,0,6,8,14,premier_league,2023/24
+2023-08-23,Newcastle,Bournemouth,2,1,7,8,15,premier_league,2023/24
+2023-08-24,Luton,Burnley,2,0,2,2,4,premier_league,2023/24
+2023-08-25,Arsenal,Manchester United,2,3,4,5,9,premier_league,2023/24
+2023-08-25,Tottenham,Nottingham Forest,1,0,7,7,14,premier_league,2023/24
+2023-08-25,Brentford,Chelsea,1,0,7,4,11,premier_league,2023/24
+2023-08-26,Newcastle,Arsenal,0,0,5,3,8,premier_league,2023/24
+2023-08-26,Arsenal,Tottenham,1,1,7,5,12,premier_league,2023/24
+2023-08-27,Aston Villa,Manchester United,3,1,3,5,8,premier_league,2023/24
+2023-08-28,Liverpool,Nottingham Forest,3,0,6,3,9,premier_league,2023/24
+2023-08-28,Arsenal,Chelsea,3,0,2,5,7,premier_league,2023/24
+2023-08-29,Tottenham,Newcastle,2,1,1,3,4,premier_league,2023/24
+2023-08-29,Tottenham,Burnley,0,0,7,1,8,premier_league,2023/24
+2023-08-29,Bournemouth,Burnley,3,1,6,2,8,premier_league,2023/24
+2023-08-30,Sheffield United,West Ham,2,1,6,6,12,premier_league,2023/24
+2023-08-30,Newcastle,Brentford,1,1,6,5,11,premier_league,2023/24
+2023-08-31,Manchester United,Wolves,1,0,6,3,9,premier_league,2023/24
+2023-09-01,Manchester United,Chelsea,1,1,3,6,9,premier_league,2023/24
+2023-09-01,Luton,Crystal Palace,0,1,4,4,8,premier_league,2023/24
+2023-09-01,Everton,Fulham,2,1,1,6,7,premier_league,2023/24
+2023-09-02,Newcastle,Fulham,1,1,3,6,9,premier_league,2023/24
+2023-09-02,Nottingham Forest,Manchester City,0,1,4,5,9,premier_league,2023/24
+2023-09-02,Manchester United,Brighton,1,1,6,0,6,premier_league,2023/24
+2023-09-05,Crystal Palace,Aston Villa,3,0,4,0,4,premier_league,2023/24
+2023-09-05,Liverpool,Fulham,1,2,8,2,10,premier_league,2023/24
+2023-09-06,Manchester City,Burnley,2,2,8,3,11,premier_league,2023/24
+2023-09-06,Chelsea,Nottingham Forest,4,3,7,7,14,premier_league,2023/24
+2023-09-06,Wolves,Bournemouth,1,1,7,4,11,premier_league,2023/24
+2023-09-06,Liverpool,Everton,2,0,5,3,8,premier_league,2023/24
+2023-09-07,Brentford,Tottenham,1,2,3,6,9,premier_league,2023/24
+2023-09-07,Nottingham Forest,Wolves,0,1,5,5,10,premier_league,2023/24
+2023-09-07,Manchester City,Bournemouth,1,0,4,5,9,premier_league,2023/24
+2023-09-07,Bournemouth,Newcastle,0,2,5,5,10,premier_league,2023/24
+2023-09-08,Aston Villa,Crystal Palace,1,0,5,5,10,premier_league,2023/24
+2023-09-08,Nottingham Forest,Wolves,1,1,3,4,7,premier_league,2023/24
+2023-09-08,West Ham,Sheffield United,1,0,5,4,9,premier_league,2023/24
+2023-09-09,Nottingham Forest,Aston Villa,2,2,5,1,6,premier_league,2023/24
+2023-09-09,Liverpool,Crystal Palace,3,1,8,4,12,premier_league,2023/24
+2023-09-09,Manchester United,Aston Villa,0,2,5,7,12,premier_league,2023/24
+2023-09-10,Tottenham,Burnley,1,0,4,2,6,premier_league,2023/24
+2023-09-10,Bournemouth,Manchester United,3,0,2,2,4,premier_league,2023/24
+2023-09-11,Luton,Brentford,2,3,3,2,5,premier_league,2023/24
+2023-09-12,Bournemouth,Fulham,2,0,8,7,15,premier_league,2023/24
+2023-09-12,Bournemouth,Wolves,3,3,4,4,8,premier_league,2023/24
+2023-09-12,Brentford,Tottenham,1,2,5,6,11,premier_league,2023/24
+2023-09-13,Brentford,Chelsea,2,0,4,5,9,premier_league,2023/24
+2023-09-13,Luton,Tottenham,2,2,6,7,13,premier_league,2023/24
+2023-09-13,Luton,Arsenal,2,1,1,13,14,premier_league,2023/24
+2023-09-16,Tottenham,Brentford,3,0,5,5,10,premier_league,2023/24
+2023-09-17,Bournemouth,Sheffield United,0,1,7,5,12,premier_league,2023/24
+2023-09-17,Newcastle,Brentford,1,0,6,4,10,premier_league,2023/24
+2023-09-17,Nottingham Forest,Wolves,1,0,1,8,9,premier_league,2023/24
+2023-09-18,West Ham,Liverpool,1,2,4,3,7,premier_league,2023/24
+2023-09-19,Wolves,Manchester United,0,1,1,0,1,premier_league,2023/24
+2023-09-20,Arsenal,Bournemouth,0,0,0,6,6,premier_league,2023/24
+2023-09-20,Brighton,Crystal Palace,0,2,9,2,11,premier_league,2023/24
+2023-09-21,Brighton,West Ham,0,0,6,5,11,premier_league,2023/24
+2023-09-21,Aston Villa,Manchester United,2,0,3,1,4,premier_league,2023/24
+2023-09-21,Brighton,Aston Villa,1,3,3,4,7,premier_league,2023/24
+2023-09-21,Liverpool,Nottingham Forest,0,2,6,3,9,premier_league,2023/24
+2023-09-23,Manchester United,Sheffield United,1,0,5,2,7,premier_league,2023/24
+2023-09-23,Everton,Tottenham,2,2,4,7,11,premier_league,2023/24
+2023-09-25,Newcastle,Crystal Palace,3,1,5,5,10,premier_league,2023/24
+2023-09-25,Chelsea,Manchester City,2,1,4,6,10,premier_league,2023/24
+2023-09-25,Crystal Palace,Newcastle,2,1,6,2,8,premier_league,2023/24
+2023-09-26,Brentford,Arsenal,0,2,5,4,9,premier_league,2023/24
+2023-09-26,Tottenham,Bournemouth,1,1,7,4,11,premier_league,2023/24
+2023-09-27,Luton,Burnley,3,0,4,4,8,premier_league,2023/24
+2023-09-27,Fulham,Tottenham,1,0,8,3,11,premier_league,2023/24
+2023-09-28,Bournemouth,Arsenal,0,0,6,5,11,premier_league,2023/24
+2023-09-28,Bournemouth,Crystal Palace,1,3,8,2,10,premier_league,2023/24
+2023-09-29,Wolves,Brentford,1,1,2,5,7,premier_league,2023/24
+2023-09-29,Newcastle,Chelsea,2,0,3,4,7,premier_league,2023/24
+2023-09-30,Fulham,Burnley,3,3,13,6,19,premier_league,2023/24
+2023-09-30,Liverpool,Luton,0,3,3,1,4,premier_league,2023/24
+2023-10-01,Bournemouth,Chelsea,3,0,1,6,7,premier_league,2023/24
+2023-10-01,Arsenal,Aston Villa,3,0,4,5,9,premier_league,2023/24
+2023-10-01,Luton,Sheffield United,1,3,6,5,11,premier_league,2023/24
+2023-10-02,Arsenal,Sheffield United,1,0,7,1,8,premier_league,2023/24
+2023-10-03,Crystal Palace,Aston Villa,2,0,5,4,9,premier_league,2023/24
+2023-10-04,Arsenal,Bournemouth,1,1,6,6,12,premier_league,2023/24
+2023-10-04,Sheffield United,Chelsea,1,1,3,5,8,premier_league,2023/24
+2023-10-04,Manchester City,Manchester United,1,1,7,3,10,premier_league,2023/24
+2023-10-05,Everton,Bournemouth,0,0,0,5,5,premier_league,2023/24
+2023-10-08,West Ham,Aston Villa,1,3,6,5,11,premier_league,2023/24
+2023-10-09,Manchester United,Bournemouth,1,1,8,8,16,premier_league,2023/24
+2023-10-09,Nottingham Forest,Fulham,1,2,3,2,5,premier_league,2023/24
+2023-10-09,Luton,Nottingham Forest,1,2,3,6,9,premier_league,2023/24
+2023-10-10,Aston Villa,Liverpool,2,3,3,5,8,premier_league,2023/24
+2023-10-11,Brighton,Crystal Palace,2,0,5,0,5,premier_league,2023/24
+2023-10-12,Brentford,Brighton,0,2,5,5,10,premier_league,2023/24
+2023-10-12,West Ham,Manchester United,3,1,3,3,6,premier_league,2023/24
+2023-10-13,Chelsea,Nottingham Forest,1,3,5,7,12,premier_league,2023/24
+2023-10-13,Nottingham Forest,Everton,1,1,4,3,7,premier_league,2023/24
+2023-10-14,Burnley,Manchester United,0,0,2,2,4,premier_league,2023/24
+2023-10-14,Arsenal,Burnley,1,0,8,5,13,premier_league,2023/24
+2023-10-14,Brighton,Luton,2,0,6,4,10,premier_league,2023/24
+2023-10-15,Nottingham Forest,Wolves,2,0,7,2,9,premier_league,2023/24
+2023-10-16,Liverpool,Aston Villa,2,3,6,6,12,premier_league,2023/24
+2023-10-17,West Ham,Chelsea,2,1,6,6,12,premier_league,2023/24
+2023-10-17,Newcastle,Brighton,1,1,6,0,6,premier_league,2023/24
+2023-10-17,Manchester City,Brentford,0,0,4,1,5,premier_league,2023/24
+2023-10-18,Nottingham Forest,Brentford,0,0,6,3,9,premier_league,2023/24
+2023-10-19,Nottingham Forest,Chelsea,3,3,8,4,12,premier_league,2023/24
+2023-10-19,Manchester United,Crystal Palace,1,1,8,4,12,premier_league,2023/24
+2023-10-20,Newcastle,Brighton,1,1,5,4,9,premier_league,2023/24
+2023-10-20,Wolves,Manchester United,3,1,2,7,9,premier_league,2023/24
+2023-10-20,Manchester City,Bournemouth,2,0,7,2,9,premier_league,2023/24
+2023-10-20,Brighton,West Ham,2,1,2,1,3,premier_league,2023/24
+2023-10-20,Burnley,Arsenal,0,0,5,7,12,premier_league,2023/24
+2023-10-21,Tottenham,West Ham,1,1,5,7,12,premier_league,2023/24
+2023-10-21,Bournemouth,Newcastle,3,1,5,1,6,premier_league,2023/24
+2023-10-21,Burnley,Fulham,1,3,3,6,9,premier_league,2023/24
+2023-10-21,Wolves,Newcastle,3,1,4,2,6,premier_league,2023/24
+2023-10-22,Arsenal,Chelsea,2,1,4,6,10,premier_league,2023/24
+2023-10-22,Everton,Brentford,1,1,3,4,7,premier_league,2023/24
+2023-10-23,Newcastle,Manchester City,1,0,6,2,8,premier_league,2023/24
+2023-10-23,West Ham,Everton,1,1,3,2,5,premier_league,2023/24
+2023-10-25,Nottingham Forest,Sheffield United,0,3,8,6,14,premier_league,2023/24
+2023-10-25,Aston Villa,Crystal Palace,1,3,6,1,7,premier_league,2023/24
+2023-10-25,Luton,Everton,2,2,5,3,8,premier_league,2023/24
+2023-10-27,Brentford,Nottingham Forest,3,2,7,3,10,premier_league,2023/24
+2023-10-28,Nottingham Forest,Brighton,4,3,3,6,9,premier_league,2023/24
+2023-10-28,Liverpool,Chelsea,1,0,3,2,5,premier_league,2023/24
+2023-10-29,Burnley,Bournemouth,3,1,7,3,10,premier_league,2023/24
+2023-10-29,Burnley,Brentford,0,2,5,6,11,premier_league,2023/24
+2023-10-29,Chelsea,Burnley,2,0,6,6,12,premier_league,2023/24
+2023-10-29,Burnley,Bournemouth,0,2,6,4,10,premier_league,2023/24
+2023-10-29,Sheffield United,Chelsea,1,0,6,7,13,premier_league,2023/24
+2023-10-30,Liverpool,Tottenham,0,1,5,4,9,premier_league,2023/24
+2023-10-30,Arsenal,Liverpool,1,1,3,5,8,premier_league,2023/24
+2023-10-31,Crystal Palace,Brighton,1,1,2,5,7,premier_league,2023/24
+2023-10-31,Aston Villa,West Ham,3,2,5,3,8,premier_league,2023/24
+2023-10-31,Tottenham,Manchester United,0,1,8,1,9,premier_league,2023/24
+2023-11-02,Burnley,Aston Villa,3,2,3,5,8,premier_league,2023/24
+2023-11-03,Arsenal,Wolves,2,2,8,4,12,premier_league,2023/24
+2023-11-05,Fulham,Liverpool,2,1,6,4,10,premier_league,2023/24
+2023-11-06,Manchester City,Crystal Palace,3,3,7,1,8,premier_league,2023/24
+2023-11-07,Everton,Bournemouth,1,1,2,8,10,premier_league,2023/24
+2023-11-07,Arsenal,Nottingham Forest,4,1,9,4,13,premier_league,2023/24
+2023-11-07,Brentford,Burnley,0,1,3,3,6,premier_league,2023/24
+2023-11-08,Aston Villa,Nottingham Forest,1,1,4,3,7,premier_league,2023/24
+2023-11-08,Burnley,Liverpool,3,0,1,7,8,premier_league,2023/24
+2023-11-08,West Ham,Liverpool,1,3,3,3,6,premier_league,2023/24
+2023-11-08,Brentford,Crystal Palace,3,1,4,2,6,premier_league,2023/24
+2023-11-08,Wolves,Aston Villa,1,0,2,7,9,premier_league,2023/24
+2023-11-08,Newcastle,Luton,2,0,9,5,14,premier_league,2023/24
+2023-11-10,Sheffield United,Liverpool,4,1,5,5,10,premier_league,2023/24
+2023-11-12,Fulham,Brentford,2,1,5,4,9,premier_league,2023/24
+2023-11-13,Burnley,Everton,0,0,3,6,9,premier_league,2023/24
+2023-11-14,Everton,Brentford,3,2,9,3,12,premier_league,2023/24
+2023-11-14,Sheffield United,Bournemouth,4,0,4,4,8,premier_league,2023/24
+2023-11-14,Everton,Crystal Palace,3,1,2,4,6,premier_league,2023/24
+2023-11-14,Everton,Newcastle,0,1,3,3,6,premier_league,2023/24
+2023-11-15,Bournemouth,Arsenal,1,1,0,7,7,premier_league,2023/24
+2023-11-15,Sheffield United,Tottenham,4,1,6,2,8,premier_league,2023/24
+2023-11-16,Liverpool,Sheffield United,2,1,5,6,11,premier_league,2023/24
+2023-11-16,Manchester City,Brighton,4,1,7,4,11,premier_league,2023/24
+2023-11-17,Crystal Palace,Brentford,0,2,5,5,10,premier_league,2023/24
+2023-11-17,Wolves,Sheffield United,1,0,5,3,8,premier_league,2023/24
+2023-11-19,Sheffield United,Brentford,2,0,4,3,7,premier_league,2023/24
+2023-11-20,Everton,Luton,2,0,8,5,13,premier_league,2023/24
+2023-11-21,Luton,Brentford,2,3,5,6,11,premier_league,2023/24
+2023-11-21,Manchester United,Crystal Palace,1,1,4,4,8,premier_league,2023/24
+2023-11-22,Manchester City,Crystal Palace,0,2,6,2,8,premier_league,2023/24
+2023-11-23,Liverpool,Manchester City,0,0,4,6,10,premier_league,2023/24
+2023-11-23,Brentford,Crystal Palace,2,0,3,6,9,premier_league,2023/24
+2023-11-23,Fulham,Liverpool,1,2,4,6,10,premier_league,2023/24
+2023-11-24,Aston Villa,Tottenham,1,0,8,6,14,premier_league,2023/24
+2023-11-24,Aston Villa,Luton,0,2,5,6,11,premier_league,2023/24
+2023-11-25,Manchester United,Luton,1,1,5,1,6,premier_league,2023/24
+2023-11-26,Sheffield United,West Ham,2,1,4,3,7,premier_league,2023/24
+2023-11-26,Manchester City,West Ham,1,0,6,4,10,premier_league,2023/24
+2023-11-26,Chelsea,Aston Villa,1,2,6,2,8,premier_league,2023/24
+2023-11-27,Luton,Bournemouth,2,2,7,3,10,premier_league,2023/24
+2023-11-27,Fulham,Arsenal,0,2,2,3,5,premier_league,2023/24
+2023-11-28,West Ham,Brentford,3,2,5,7,12,premier_league,2023/24
+2023-11-29,Manchester United,Liverpool,0,0,5,3,8,premier_league,2023/24
+2023-11-30,Sheffield United,Burnley,1,3,1,5,6,premier_league,2023/24
+2023-11-30,Chelsea,Sheffield United,1,1,5,4,9,premier_league,2023/24
+2023-12-01,Chelsea,Bournemouth,1,0,8,8,16,premier_league,2023/24
+2023-12-02,Burnley,Sheffield United,2,1,3,5,8,premier_league,2023/24
+2023-12-02,Manchester United,Crystal Palace,1,0,4,5,9,premier_league,2023/24
+2023-12-04,West Ham,Sheffield United,4,2,7,0,7,premier_league,2023/24
+2023-12-04,Aston Villa,Manchester United,0,3,5,3,8,premier_league,2023/24
+2023-12-05,Brentford,West Ham,0,1,4,2,6,premier_league,2023/24
+2023-12-06,Manchester City,Sheffield United,2,0,6,3,9,premier_league,2023/24
+2023-12-06,Brighton,Crystal Palace,1,2,2,7,9,premier_league,2023/24
+2023-12-07,Sheffield United,Tottenham,1,0,2,6,8,premier_league,2023/24
+2023-12-08,Bournemouth,Manchester City,2,0,1,4,5,premier_league,2023/24
+2023-12-08,Manchester United,Fulham,3,1,3,4,7,premier_league,2023/24
+2023-12-08,Nottingham Forest,Manchester United,1,1,6,2,8,premier_league,2023/24
+2023-12-09,Luton,Arsenal,4,2,1,2,3,premier_league,2023/24
+2023-12-10,Bournemouth,Tottenham,3,1,3,8,11,premier_league,2023/24
+2023-12-11,Crystal Palace,Brighton,2,0,3,4,7,premier_league,2023/24
+2023-12-11,Tottenham,Chelsea,1,1,5,8,13,premier_league,2023/24
+2023-12-12,Nottingham Forest,Sheffield United,0,1,5,2,7,premier_league,2023/24
+2023-12-12,Burnley,Brentford,2,2,5,4,9,premier_league,2023/24
+2023-12-12,Chelsea,Aston Villa,3,0,5,8,13,premier_league,2023/24
+2023-12-13,Brentford,Everton,3,2,7,6,13,premier_league,2023/24
+2023-12-13,Brentford,Sheffield United,2,1,5,5,10,premier_league,2023/24
+2023-12-13,Brentford,Luton,0,1,4,4,8,premier_league,2023/24
+2023-12-13,Aston Villa,Everton,1,1,4,6,10,premier_league,2023/24
+2023-12-14,Tottenham,Liverpool,3,1,3,3,6,premier_league,2023/24
+2023-12-15,Everton,Aston Villa,0,2,3,5,8,premier_league,2023/24
+2023-12-15,Luton,Manchester United,0,2,4,4,8,premier_league,2023/24
+2023-12-15,Everton,Chelsea,0,2,4,5,9,premier_league,2023/24
+2023-12-15,Wolves,West Ham,2,1,4,2,6,premier_league,2023/24
+2023-12-15,Liverpool,Manchester City,0,0,5,5,10,premier_league,2023/24
+2023-12-16,Arsenal,Chelsea,2,0,4,3,7,premier_league,2023/24
+2023-12-16,Everton,Bournemouth,3,3,9,3,12,premier_league,2023/24
+2023-12-16,Everton,Fulham,2,0,5,5,10,premier_league,2023/24
+2023-12-16,Tottenham,Luton,1,2,7,5,12,premier_league,2023/24
+2023-12-17,Tottenham,Burnley,3,0,6,3,9,premier_league,2023/24
+2023-12-17,Manchester United,Arsenal,1,1,6,9,15,premier_league,2023/24
+2023-12-19,Wolves,Newcastle,2,0,5,0,5,premier_league,2023/24
+2023-12-20,Newcastle,Fulham,1,0,5,4,9,premier_league,2023/24
+2023-12-20,Chelsea,Tottenham,2,2,6,7,13,premier_league,2023/24
+2023-12-20,West Ham,Newcastle,4,0,9,2,11,premier_league,2023/24
+2023-12-21,Nottingham Forest,Luton,2,0,5,5,10,premier_league,2023/24
+2023-12-21,Brentford,Fulham,1,2,5,0,5,premier_league,2023/24
+2023-12-21,Arsenal,Sheffield United,4,0,7,3,10,premier_league,2023/24
+2023-12-22,Tottenham,Manchester City,2,0,2,4,6,premier_league,2023/24
+2023-12-22,Crystal Palace,West Ham,2,0,2,0,2,premier_league,2023/24
+2023-12-22,Crystal Palace,Wolves,0,0,3,3,6,premier_league,2023/24
+2023-12-22,Chelsea,West Ham,2,2,5,3,8,premier_league,2023/24
+2023-12-23,Fulham,Luton,0,2,5,5,10,premier_league,2023/24
+2023-12-24,Arsenal,Brentford,2,2,4,6,10,premier_league,2023/24
+2023-12-24,Wolves,Bournemouth,2,0,3,6,9,premier_league,2023/24
+2023-12-24,Arsenal,Aston Villa,2,3,6,1,7,premier_league,2023/24
+2023-12-25,Wolves,Brighton,0,1,4,2,6,premier_league,2023/24
+2023-12-25,Chelsea,Burnley,1,0,6,2,8,premier_league,2023/24
+2023-12-26,Sheffield United,Chelsea,1,2,4,2,6,premier_league,2023/24
+2023-12-26,Brighton,Liverpool,0,0,3,7,10,premier_league,2023/24
+2023-12-27,Sheffield United,Brentford,3,2,5,5,10,premier_league,2023/24
+2023-12-28,Liverpool,Crystal Palace,3,2,7,5,12,premier_league,2023/24
+2023-12-29,Chelsea,Manchester City,0,2,5,6,11,premier_league,2023/24
+2023-12-29,Brentford,Aston Villa,1,1,2,6,8,premier_league,2023/24
+2023-12-30,Tottenham,Arsenal,1,2,5,1,6,premier_league,2023/24
+2023-12-31,Crystal Palace,Everton,1,0,5,0,5,premier_league,2023/24
+2024-01-01,Nottingham Forest,Fulham,2,0,6,2,8,premier_league,2023/24
+2024-01-01,Manchester United,Luton,2,3,8,0,8,premier_league,2023/24
+2024-01-02,Burnley,West Ham,1,1,4,6,10,premier_league,2023/24
+2024-01-02,Wolves,Burnley,0,3,5,5,10,premier_league,2023/24
+2024-01-02,Arsenal,Fulham,0,1,6,2,8,premier_league,2023/24
+2024-01-02,West Ham,Manchester City,2,2,4,1,5,premier_league,2023/24
+2024-01-03,Arsenal,Aston Villa,3,2,6,1,7,premier_league,2023/24
+2024-01-03,Newcastle,Arsenal,1,2,2,4,6,premier_league,2023/24
+2024-01-04,Manchester United,Crystal Palace,0,1,2,1,3,premier_league,2023/24
+2024-01-04,Brentford,Liverpool,2,3,2,7,9,premier_league,2023/24
+2024-01-04,Tottenham,Liverpool,3,2,7,4,11,premier_league,2023/24
+2024-01-04,Luton,Brentford,3,0,4,3,7,premier_league,2023/24
+2024-01-06,Wolves,Tottenham,0,3,9,6,15,premier_league,2023/24
+2024-01-07,Fulham,Brentford,1,2,6,5,11,premier_league,2023/24
+2024-01-07,Everton,Manchester City,2,1,1,7,8,premier_league,2023/24
+2024-01-07,Brighton,Fulham,3,2,5,4,9,premier_league,2023/24
+2024-01-07,Wolves,Brighton,2,1,3,4,7,premier_league,2023/24
+2024-01-08,Everton,Nottingham Forest,0,2,2,5,7,premier_league,2023/24
+2024-01-09,Manchester United,Chelsea,4,1,4,6,10,premier_league,2023/24
+2024-01-11,Nottingham Forest,Manchester City,3,0,5,5,10,premier_league,2023/24
+2024-01-11,Aston Villa,Tottenham,3,0,7,4,11,premier_league,2023/24
+2024-01-11,Aston Villa,Brentford,2,1,9,6,15,premier_league,2023/24
+2024-01-11,Everton,Arsenal,3,1,5,6,11,premier_league,2023/24
+2024-01-11,Everton,Tottenham,3,0,0,6,6,premier_league,2023/24
+2024-01-12,Crystal Palace,Aston Villa,1,1,9,1,10,premier_league,2023/24
+2024-01-12,Burnley,Manchester United,2,0,0,5,5,premier_league,2023/24
+2024-01-12,Wolves,Newcastle,1,3,7,5,12,premier_league,2023/24
+2024-01-12,Everton,Newcastle,1,0,1,7,8,premier_league,2023/24
+2024-01-12,West Ham,Crystal Palace,1,1,3,3,6,premier_league,2023/24
+2024-01-13,Tottenham,Sheffield United,2,1,7,4,11,premier_league,2023/24
+2024-01-13,Brentford,Tottenham,2,2,5,7,12,premier_league,2023/24
+2024-01-15,Chelsea,Bournemouth,2,0,6,1,7,premier_league,2023/24
+2024-01-15,Brentford,Chelsea,3,0,5,2,7,premier_league,2023/24
+2024-01-15,Liverpool,Newcastle,3,1,2,2,4,premier_league,2023/24
+2024-01-15,Burnley,Wolves,1,0,4,7,11,premier_league,2023/24
+2024-01-17,Chelsea,Newcastle,1,2,5,5,10,premier_league,2023/24
+2024-01-17,Newcastle,Wolves,2,0,4,0,4,premier_league,2023/24
+2024-01-18,Bournemouth,Chelsea,1,0,2,6,8,premier_league,2023/24
+2024-01-19,Brighton,Sheffield United,3,1,6,6,12,premier_league,2023/24
+2024-01-19,Fulham,Arsenal,2,2,4,6,10,premier_league,2023/24
+2024-01-19,Sheffield United,Nottingham Forest,2,0,6,4,10,premier_league,2023/24
+2024-01-19,Sheffield United,Crystal Palace,1,1,5,6,11,premier_league,2023/24
+2024-01-20,Manchester City,Wolves,2,1,8,6,14,premier_league,2023/24
+2024-01-20,Burnley,Everton,1,1,2,2,4,premier_league,2023/24
+2024-01-20,Tottenham,Everton,3,1,5,5,10,premier_league,2023/24
+2024-01-21,Everton,Nottingham Forest,1,0,4,2,6,premier_league,2023/24
+2024-01-21,Aston Villa,Manchester City,2,2,8,3,11,premier_league,2023/24
+2024-01-21,Tottenham,West Ham,0,1,9,2,11,premier_league,2023/24
+2024-01-22,Sheffield United,Nottingham Forest,1,0,3,6,9,premier_league,2023/24
+2024-01-23,Liverpool,Bournemouth,1,2,5,3,8,premier_league,2023/24
+2024-01-23,Wolves,Aston Villa,0,1,6,5,11,premier_league,2023/24
+2024-01-23,Newcastle,Luton,3,1,7,3,10,premier_league,2023/24
+2024-01-24,Manchester City,Brentford,2,1,6,5,11,premier_league,2023/24
+2024-01-24,Everton,Burnley,3,0,7,2,9,premier_league,2023/24
+2024-01-25,Luton,Everton,4,1,6,5,11,premier_league,2023/24
+2024-01-25,Manchester City,Burnley,0,2,8,2,10,premier_league,2023/24
+2024-01-25,Chelsea,Arsenal,2,1,4,3,7,premier_league,2023/24
+2024-01-26,Brighton,Everton,2,1,5,5,10,premier_league,2023/24
+2024-01-27,Bournemouth,Burnley,1,0,4,6,10,premier_league,2023/24
+2024-01-27,Bournemouth,Arsenal,0,3,2,3,5,premier_league,2023/24
+2024-01-27,Bournemouth,Luton,1,1,3,3,6,premier_league,2023/24
+2024-01-27,Arsenal,Liverpool,2,0,6,5,11,premier_league,2023/24
+2024-01-28,Luton,Tottenham,3,1,7,7,14,premier_league,2023/24
+2024-01-28,Chelsea,Sheffield United,1,1,7,5,12,premier_league,2023/24
+2024-01-29,Chelsea,Manchester City,0,2,5,3,8,premier_league,2023/24
+2024-01-29,Luton,Liverpool,2,0,5,6,11,premier_league,2023/24
+2024-01-29,Crystal Palace,Fulham,2,1,1,6,7,premier_league,2023/24
+2024-01-30,Crystal Palace,Manchester United,3,2,3,4,7,premier_league,2023/24
+2024-01-31,West Ham,Manchester United,0,2,4,5,9,premier_league,2023/24
+2024-02-01,Newcastle,Bournemouth,2,0,5,5,10,premier_league,2023/24
+2024-02-02,Chelsea,Arsenal,2,1,6,6,12,premier_league,2023/24
+2024-02-02,Chelsea,Manchester City,0,3,3,2,5,premier_league,2023/24
+2024-02-03,Chelsea,Arsenal,2,0,6,3,9,premier_league,2023/24
+2024-02-03,Crystal Palace,Luton,1,1,6,4,10,premier_league,2023/24
+2024-02-03,Nottingham Forest,Tottenham,1,3,6,5,11,premier_league,2023/24
+2024-02-04,Arsenal,Crystal Palace,1,0,5,1,6,premier_league,2023/24
+2024-02-05,Sheffield United,Chelsea,0,2,3,7,10,premier_league,2023/24
+2024-02-05,Nottingham Forest,Brighton,2,0,1,9,10,premier_league,2023/24
+2024-02-05,Burnley,Tottenham,1,0,9,9,18,premier_league,2023/24
+2024-02-06,Brentford,Sheffield United,1,2,3,7,10,premier_league,2023/24
+2024-02-08,Aston Villa,Nottingham Forest,0,0,9,6,15,premier_league,2023/24
+2024-02-10,Liverpool,Manchester United,1,1,5,5,10,premier_league,2023/24
+2024-02-10,Everton,Chelsea,3,2,6,3,9,premier_league,2023/24
+2024-02-10,Sheffield United,Crystal Palace,2,3,5,5,10,premier_league,2023/24
+2024-02-10,Fulham,Liverpool,0,1,6,4,10,premier_league,2023/24
+2024-02-10,Wolves,Burnley,4,3,7,4,11,premier_league,2023/24
+2024-02-10,Aston Villa,Everton,1,3,0,1,1,premier_league,2023/24
+2024-02-11,Brentford,Manchester City,3,1,2,4,6,premier_league,2023/24
+2024-02-12,Sheffield United,Everton,1,0,6,12,18,premier_league,2023/24
+2024-02-12,Newcastle,Luton,1,0,4,3,7,premier_league,2023/24
+2024-02-12,Aston Villa,Wolves,2,2,3,6,9,premier_league,2023/24
+2024-02-13,Fulham,Liverpool,1,2,4,4,8,premier_league,2023/24
+2024-02-13,Luton,Newcastle,1,1,3,6,9,premier_league,2023/24
+2024-02-14,Everton,Burnley,1,0,7,5,12,premier_league,2023/24
+2024-02-16,Arsenal,Aston Villa,1,1,5,6,11,premier_league,2023/24
+2024-02-16,West Ham,Liverpool,1,1,5,7,12,premier_league,2023/24
+2024-02-18,Chelsea,Everton,3,2,6,2,8,premier_league,2023/24
+2024-02-18,Liverpool,Everton,2,1,6,4,10,premier_league,2023/24
+2024-02-18,Nottingham Forest,Fulham,3,3,7,6,13,premier_league,2023/24
+2024-02-19,Luton,Tottenham,2,1,5,6,11,premier_league,2023/24
+2024-02-19,Brentford,Nottingham Forest,3,1,5,5,10,premier_league,2023/24
+2024-02-19,Wolves,Burnley,2,0,2,5,7,premier_league,2023/24
+2024-02-19,Crystal Palace,Manchester City,0,1,6,3,9,premier_league,2023/24
+2024-02-20,Burnley,Chelsea,2,2,5,6,11,premier_league,2023/24
+2024-02-21,Sheffield United,Manchester City,1,1,0,7,7,premier_league,2023/24
+2024-02-22,Burnley,Manchester City,1,1,4,4,8,premier_league,2023/24
+2024-02-22,Bournemouth,Wolves,1,0,0,6,6,premier_league,2023/24
+2024-02-22,Wolves,West Ham,0,0,7,0,7,premier_league,2023/24
+2024-02-23,Arsenal,West Ham,3,1,6,5,11,premier_league,2023/24
+2024-02-23,Burnley,Crystal Palace,4,2,4,4,8,premier_league,2023/24
+2024-02-23,Tottenham,Chelsea,2,0,4,6,10,premier_league,2023/24
+2024-02-24,Aston Villa,Brentford,2,1,7,6,13,premier_league,2023/24
+2024-02-24,Brentford,Everton,2,0,9,4,13,premier_league,2023/24
+2024-02-24,Manchester City,Liverpool,0,1,3,5,8,premier_league,2023/24
+2024-02-25,Aston Villa,Sheffield United,3,0,3,7,10,premier_league,2023/24
+2024-02-26,Everton,Manchester City,1,1,3,9,12,premier_league,2023/24
+2024-02-26,Brentford,Manchester City,1,0,3,8,11,premier_league,2023/24
+2024-02-27,Manchester City,Sheffield United,2,0,9,0,9,premier_league,2023/24
+2024-02-28,Manchester City,Arsenal,1,1,0,4,4,premier_league,2023/24
+2024-02-28,Crystal Palace,Newcastle,1,1,8,4,12,premier_league,2023/24
+2024-02-29,Manchester United,Manchester City,1,0,4,5,9,premier_league,2023/24
+2024-03-01,Aston Villa,Brighton,2,1,7,3,10,premier_league,2023/24
+2024-03-01,Wolves,West Ham,1,0,9,7,16,premier_league,2023/24
+2024-03-01,Manchester United,Nottingham Forest,4,3,5,4,9,premier_league,2023/24
+2024-03-03,Brighton,Nottingham Forest,0,1,5,4,9,premier_league,2023/24
+2024-03-04,Fulham,Manchester United,1,0,7,4,11,premier_league,2023/24
+2024-03-04,Chelsea,Liverpool,0,0,4,1,5,premier_league,2023/24
+2024-03-05,Brighton,Newcastle,0,2,6,2,8,premier_league,2023/24
+2024-03-06,Burnley,Manchester City,3,1,9,9,18,premier_league,2023/24
+2024-03-06,Burnley,Newcastle,1,2,2,2,4,premier_league,2023/24
+2024-03-06,Aston Villa,Newcastle,1,0,3,5,8,premier_league,2023/24
+2024-03-07,Nottingham Forest,Manchester United,2,0,3,8,11,premier_league,2023/24
+2024-03-08,Brighton,Tottenham,1,2,3,3,6,premier_league,2023/24
+2024-03-09,Liverpool,Chelsea,2,0,4,6,10,premier_league,2023/24
+2024-03-09,Liverpool,Burnley,0,0,9,3,12,premier_league,2023/24
+2024-03-10,Fulham,Wolves,2,2,3,0,3,premier_league,2023/24
+2024-03-11,Crystal Palace,Aston Villa,3,1,6,4,10,premier_league,2023/24
+2024-03-12,Chelsea,Liverpool,3,0,1,2,3,premier_league,2023/24
+2024-03-13,Crystal Palace,Manchester City,4,1,4,4,8,premier_league,2023/24
+2024-03-14,Bournemouth,Wolves,0,2,1,6,7,premier_league,2023/24
+2024-03-14,Manchester United,West Ham,1,0,8,2,10,premier_league,2023/24
+2024-03-14,Burnley,Arsenal,1,1,5,6,11,premier_league,2023/24
+2024-03-14,Luton,Nottingham Forest,1,0,6,5,11,premier_league,2023/24
+2024-03-14,Nottingham Forest,Arsenal,1,3,3,5,8,premier_league,2023/24
+2024-03-16,Fulham,Burnley,3,2,4,3,7,premier_league,2023/24
+2024-03-17,Brighton,Fulham,1,2,3,6,9,premier_league,2023/24
+2024-03-17,Arsenal,Crystal Palace,1,0,3,2,5,premier_league,2023/24
+2024-03-18,Burnley,Brighton,1,1,3,6,9,premier_league,2023/24
+2024-03-18,Everton,Crystal Palace,1,2,5,5,10,premier_league,2023/24
+2024-03-18,Manchester City,Chelsea,1,1,7,5,12,premier_league,2023/24
+2024-03-20,Fulham,Tottenham,2,1,6,7,13,premier_league,2023/24
+2024-03-21,Arsenal,Manchester United,0,0,5,0,5,premier_league,2023/24
+2024-03-22,Liverpool,Everton,3,0,6,5,11,premier_league,2023/24
+2024-03-22,Everton,Wolves,1,0,6,3,9,premier_league,2023/24
+2024-03-23,Brighton,Manchester City,2,1,4,6,10,premier_league,2023/24
+2024-03-23,Brighton,Wolves,1,1,3,4,7,premier_league,2023/24
+2024-03-24,Bournemouth,Brentford,1,1,3,5,8,premier_league,2023/24
+2024-03-25,Wolves,Luton,1,1,5,1,6,premier_league,2023/24
+2024-03-26,Fulham,Wolves,1,3,9,5,14,premier_league,2023/24
+2024-03-28,Arsenal,West Ham,2,1,6,6,12,premier_league,2023/24
+2024-03-29,Crystal Palace,Luton,1,2,5,5,10,premier_league,2023/24
+2024-03-29,Aston Villa,Newcastle,1,1,8,6,14,premier_league,2023/24
+2024-03-29,Wolves,Brighton,0,0,4,6,10,premier_league,2023/24
+2024-03-30,Fulham,Liverpool,2,1,6,6,12,premier_league,2023/24
+2024-03-30,Bournemouth,Chelsea,2,2,4,4,8,premier_league,2023/24
+2024-03-31,Aston Villa,Chelsea,1,1,6,6,12,premier_league,2023/24
+2024-03-31,Luton,Arsenal,0,2,1,7,8,premier_league,2023/24
+2024-03-31,Chelsea,Nottingham Forest,3,3,7,4,11,premier_league,2023/24
+2024-03-31,Bournemouth,West Ham,1,1,5,3,8,premier_league,2023/24
+2024-03-31,Brentford,Nottingham Forest,0,3,8,7,15,premier_league,2023/24
+2024-03-31,Newcastle,Fulham,1,2,10,4,14,premier_league,2023/24
+2024-04-01,Manchester United,Newcastle,1,1,2,3,5,premier_league,2023/24
+2024-04-02,Aston Villa,Brighton,3,0,3,7,10,premier_league,2023/24
+2024-04-03,Manchester City,Burnley,1,2,5,4,9,premier_league,2023/24
+2024-04-03,Bournemouth,Tottenham,1,1,5,6,11,premier_league,2023/24
+2024-04-04,Newcastle,Brentford,1,3,5,1,6,premier_league,2023/24
+2024-04-05,Sheffield United,Crystal Palace,1,2,1,6,7,premier_league,2023/24
+2024-04-05,Burnley,Brentford,1,2,1,6,7,premier_league,2023/24
+2024-04-05,Crystal Palace,Aston Villa,0,0,6,6,12,premier_league,2023/24
+2024-04-06,Crystal Palace,Chelsea,4,2,5,5,10,premier_league,2023/24
+2024-04-07,Brentford,Arsenal,2,2,3,6,9,premier_league,2023/24
+2024-04-08,Manchester United,Chelsea,3,2,6,6,12,premier_league,2023/24
+2024-04-08,West Ham,Liverpool,4,3,1,4,5,premier_league,2023/24
+2024-04-09,Everton,Burnley,0,1,5,7,12,premier_league,2023/24
+2024-04-09,Tottenham,Sheffield United,1,0,6,6,12,premier_league,2023/24
+2024-04-10,Chelsea,Arsenal,2,1,3,5,8,premier_league,2023/24
+2024-04-10,Everton,Luton,0,1,5,4,9,premier_league,2023/24
+2024-04-10,Burnley,Aston Villa,2,0,3,3,6,premier_league,2023/24
+2024-04-11,Newcastle,Tottenham,1,0,4,6,10,premier_league,2023/24
+2024-04-12,Arsenal,Fulham,3,2,3,2,5,premier_league,2023/24
+2024-04-12,Manchester United,Brentford,0,3,4,5,9,premier_league,2023/24
+2024-04-13,Brighton,Tottenham,3,1,5,6,11,premier_league,2023/24
+2024-04-14,Arsenal,Crystal Palace,2,1,5,2,7,premier_league,2023/24
+2024-04-14,Wolves,West Ham,2,0,5,6,11,premier_league,2023/24
+2024-04-16,Chelsea,Manchester United,1,3,3,4,7,premier_league,2023/24
+2024-04-17,Crystal Palace,West Ham,1,0,7,4,11,premier_league,2023/24
+2024-04-17,West Ham,Nottingham Forest,0,1,5,8,13,premier_league,2023/24
+2024-04-17,Nottingham Forest,Burnley,3,1,5,3,8,premier_league,2023/24
+2024-04-17,Chelsea,West Ham,2,1,3,4,7,premier_league,2023/24
+2024-04-17,Manchester City,Crystal Palace,3,2,10,4,14,premier_league,2023/24
+2024-04-18,Aston Villa,Bournemouth,0,0,10,3,13,premier_league,2023/24
+2024-04-20,Burnley,Nottingham Forest,2,1,3,6,9,premier_league,2023/24
+2024-04-20,Liverpool,Manchester United,2,0,2,2,4,premier_league,2023/24
+2024-04-20,Crystal Palace,Bournemouth,3,1,4,9,13,premier_league,2023/24
+2024-04-21,Tottenham,Manchester City,1,1,6,5,11,premier_league,2023/24
+2024-04-21,Sheffield United,Arsenal,1,1,2,6,8,premier_league,2023/24
+2024-04-22,Chelsea,Tottenham,2,1,7,4,11,premier_league,2023/24
+2024-04-23,Manchester City,West Ham,0,1,6,1,7,premier_league,2023/24
+2024-04-24,Tottenham,Bournemouth,0,0,6,4,10,premier_league,2023/24
+2024-04-24,Liverpool,Tottenham,0,2,7,4,11,premier_league,2023/24
+2024-04-25,Crystal Palace,Fulham,1,0,1,6,7,premier_league,2023/24
+2024-04-25,Sheffield United,Chelsea,0,1,6,8,14,premier_league,2023/24
+2024-04-26,Brentford,Wolves,2,1,4,5,9,premier_league,2023/24
+2024-04-26,Nottingham Forest,Burnley,0,2,5,2,7,premier_league,2023/24
+2024-04-26,Liverpool,Everton,2,1,5,7,12,premier_league,2023/24
+2024-04-28,Wolves,Tottenham,2,1,2,6,8,premier_league,2023/24
+2024-04-29,Wolves,Everton,3,0,6,5,11,premier_league,2023/24
+2024-04-30,Arsenal,Everton,3,1,6,0,6,premier_league,2023/24
+2024-05-02,Newcastle,Brentford,0,1,2,0,2,premier_league,2023/24
+2024-05-02,Manchester United,Brighton,1,1,4,4,8,premier_league,2023/24
+2024-05-03,Liverpool,Aston Villa,1,2,2,6,8,premier_league,2023/24
+2024-05-03,Aston Villa,Liverpool,0,3,4,8,12,premier_league,2023/24
+2024-05-03,Aston Villa,Sheffield United,0,1,7,5,12,premier_league,2023/24
+2024-05-04,Luton,Sheffield United,0,1,5,3,8,premier_league,2023/24
+2024-05-04,Liverpool,Everton,3,1,4,5,9,premier_league,2023/24
+2024-05-04,Luton,Aston Villa,1,1,1,8,9,premier_league,2023/24
+2024-05-05,Brentford,West Ham,3,0,0,1,1,premier_league,2023/24
+2024-05-07,Everton,Fulham,3,2,4,7,11,premier_league,2023/24
+2024-05-08,Tottenham,Arsenal,0,1,2,4,6,premier_league,2023/24
+2024-05-10,Wolves,Arsenal,3,1,0,8,8,premier_league,2023/24
+2024-05-10,Fulham,Tottenham,2,0,7,5,12,premier_league,2023/24
+2024-05-11,Brighton,Tottenham,2,1,4,7,11,premier_league,2023/24
+2024-05-11,Everton,Arsenal,0,0,3,5,8,premier_league,2023/24
+2024-05-11,Nottingham Forest,Everton,3,0,4,5,9,premier_league,2023/24
+2024-05-12,Chelsea,Aston Villa,2,2,7,6,13,premier_league,2023/24
+2024-05-12,Burnley,West Ham,1,1,7,10,17,premier_league,2023/24
+2024-05-12,Manchester City,Nottingham Forest,2,0,4,0,4,premier_league,2023/24
+2024-05-12,Tottenham,Fulham,2,1,3,4,7,premier_league,2023/24
+2024-05-13,Chelsea,Nottingham Forest,0,1,8,0,8,premier_league,2023/24
+2024-05-15,Bournemouth,Chelsea,1,0,4,6,10,premier_league,2023/24
+2024-05-16,Sheffield United,Brighton,0,2,5,8,13,premier_league,2023/24
+2024-05-16,Fulham,Manchester United,1,1,6,6,12,premier_league,2023/24
+2024-05-16,Liverpool,Fulham,2,2,6,6,12,premier_league,2023/24
+2024-05-16,Burnley,Brighton,1,2,2,6,8,premier_league,2023/24
+2024-05-16,Bournemouth,Burnley,1,0,6,0,6,premier_league,2023/24
+2024-05-16,Everton,Wolves,2,1,2,7,9,premier_league,2023/24
+2024-05-17,Chelsea,Liverpool,1,0,6,4,10,premier_league,2023/24

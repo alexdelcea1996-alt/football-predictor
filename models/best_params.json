@@ -1,0 +1,31 @@
+{
+  "xgboost": {
+    "n_estimators": 570,
+    "learning_rate": 0.07218856205797605,
+    "max_depth": 3,
+    "reg_lambda": 2.651830037317927,
+    "reg_alpha": 0.005177319344395879,
+    "subsample": 0.6493426718932053,
+    "colsample_bytree": 0.6771762337252749,
+    "min_child_weight": 6
+  },
+  "logreg": {
+    "C": 0.0013344880804895146,
+    "solver": "saga",
+    "max_iter": 1345
+  },
+  "results": {
+    "xgboost": {
+      "rps": 0.15236976930203291,
+      "accuracy": 0.47293447293447294
+    },
+    "logreg": {
+      "rps": 0.1342922979699284,
+      "accuracy": 0.5156695156695157
+    },
+    "ensemble": {
+      "rps": 0.13935343870200115,
+      "accuracy": 0.49572649572649574
+    }
+  }
+}

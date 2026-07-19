@@ -1,0 +1,124 @@
+{
+  "_clarification": "IMPORTANT: There is no video game titled 'Fable 5'. The upcoming game is titled simply 'Fable' — a series reboot by Playground Games. 'Claude Fable 5' is the name of an Anthropic AI model and is unrelated to the game. This dataset covers the real game, Fable (2027).",
+  "game": "Fable",
+  "working_titles_seen_in_press": ["Fable (2026 video game)", "Fable (2027 video game)", "Fable 4 (informal)"],
+  "developer": "Playground Games (with Eidos-Montréal co-development support)",
+  "publisher": "Xbox Game Studios",
+  "engine": "ForzaTech (reported in earlier press coverage; NOT re-confirmed in 2026 sources)",
+  "release_date": "2027-02-23",
+  "release_date_history": [
+    {"window": "2025", "announced": "2024-06-09", "status": "missed"},
+    {"window": "2026 (later Autumn 2026)", "announced": "2025-02-25", "status": "missed"},
+    {"window": "2027-02-23", "announced": "2026-05-29", "status": "current"}
+  ],
+  "platforms": ["Xbox Series X|S", "PC (Windows / Steam)", "PlayStation 5"],
+  "game_pass_day_one": true,
+  "price_tiers": [
+    {
+      "edition": "Standard",
+      "price_usd": 69.99,
+      "contents": ["Base game", "Pre-Order Content Pack (Chicken Suit, Wild Flower Bouquet, Toy Chicken, Scones & Jam Picnic Hamper) — with pre-order"]
+    },
+    {
+      "edition": "Premium (digital only)",
+      "price_usd": 99.99,
+      "contents": ["Base game", "5-day early access", "Premium Content Pack (Splendid Armour, Bastard Armour, in-game gifts)", "Digital artbook & soundtrack", "'Fable: Order of the Hero' post-launch expansion", "Pre-Order Content Pack"]
+    },
+    {
+      "edition": "Collector's",
+      "price_usd": 199.99,
+      "contents": ["Everything in Premium (digital)", "Jack of Blades statuette", "Hardcover art book", "Custom SteelBook case", "Guild Seal lapel pin"]
+    }
+  ],
+  "gameplay_features": {
+    "combat": "'Style-weaving' combat — seamless switching between melee, ranged and magic with no frame delay; evolved from the classic Strength/Skill/Will triad. Includes the chicken-transformation spell (enemies can be turned into chickens and kicked).",
+    "open_world": "True open world — a franchise first. Albion explorable early; Bowerstone is a fully traversable central hub city.",
+    "morality_system": "Returning good/evil morality with new twists: alignment shaped by the player's actions AND by how NPCs perceive them. (The phrase 'subjective, multi-perspective morality' from the task prompt: PARTIALLY CONFIRMED — perception-based reactions confirmed, exact mechanics not detailed.)",
+    "npc_count": "1,000+ handcrafted, fully-voiced NPCs ('Living Population') with names, roles, daily routines and personalities",
+    "npc_interactions": "NPCs have simulated lives; their worldviews influence reactions to the player. Nearly all ~1,000 NPCs can be romanced/married (small set of exceptions).",
+    "multiplayer": "NONE — single-player only (confirmed via Steam categories and press). No co-op (a step back from Fable 2/3), no PvP/PvE.",
+    "locations": {
+      "confirmed": ["Albion (open world)", "Bowerstone (hub city)", "Hero's Guild (returning)", "new marshland and mountain regions"],
+      "not_confirmed": ["Bloodstone — NOT CONFIRMED in any 2026 source found"]
+    },
+    "enemies": {
+      "returning": ["Hobbes", "Balverines", "Trolls", "Hollowfolk"],
+      "new": ["Cockatrice (fire-breathing)"]
+    },
+    "customization": "Expanded character customization: appearance, clothing, scars, tattoos",
+    "life_sim_layer": "Property and business ownership, marriage/romance with nearly all NPCs, raising children (multiple children possible)"
+  },
+  "legacy_features_returning": [
+    "Good/evil morality system",
+    "Marriage, romance and family",
+    "Property and business ownership",
+    "Chicken kicking / signature British humor",
+    "Hobbes, Balverines, Trolls, Hollow-type enemies",
+    "Hero's Guild",
+    "Bowerstone and Albion setting",
+    "Strength/Skill/Will combat DNA (reworked as style-weaving)"
+  ],
+  "features_cut_vs_legacy": [
+    "Co-op multiplayer (present in Fable 2 & 3) — absent",
+    "Dog companion — NOT CONFIRMED either way in sources found"
+  ],
+  "marketing_timeline": [
+    {"date": "2020-07-23", "event": "Announcement trailer at Xbox Games Showcase (alongside Series X|S reveal)"},
+    {"date": "2023-06-11", "event": "First in-game trailer at Xbox Games Showcase (Richard Ayoade as the giant Dave)"},
+    {"date": "2024-06-09", "event": "New trailer; 2025 launch window announced (Xbox Series X|S + PC)"},
+    {"date": "2025-02-25", "event": "First delay: Craig Duncan (Head of Xbox Game Studios) moves launch to 2026"},
+    {"date": "2026-01-22", "event": "Xbox Developer Direct: gameplay deep dive; Autumn 2026 window; PS5 day-one launch announced; 'Living Population' (1,000+ NPCs), open world, style-weaving combat revealed"},
+    {"date": "2026-05-29", "event": "Second delay: Matt Booty (Xbox chief content officer) moves release to February 2027, citing the packed holiday-2026 window (incl. GTA VI in November 2026)"},
+    {"date": "2026-06-08", "event": "Pre-orders open (Standard / Premium / Collector's); Feb 23 2027 date confirmed"},
+    {"date": "2027-02-23", "event": "Planned worldwide release (Xbox Series X|S, PC, PS5, Game Pass day one)"}
+  ],
+  "community_sentiment": {
+    "overall": "mixed-positive (qualitative assessment from forum/press coverage — no quantitative sentiment dataset exists; treat as estimate)",
+    "positive_drivers": ["Jan 2026 gameplay trailer nostalgia and humor (chicken kicking) widely praised", "excitement for first true open-world Fable", "'rooting for this game' sentiment on ResetEra/Reddit"],
+    "negative_drivers": ["skepticism after two delays ('I'll be pleasantly surprised if it makes Feb 2027')", "disappointment over no co-op", "wariness about 20-year gap and Playground's first RPG"],
+    "most_discussed_topics": [
+      "The two delays and doubts about development progress",
+      "Faithfulness to classic Fable tone/humor after the Jan 2026 gameplay reveal",
+      "Xbox multiplatform strategy — Fable launching day one on PS5"
+    ],
+    "note_on_prompt_source": "The task prompt cited 'Reddit r/LocalLLaMA dataset' — that subreddit is about local LLMs and is unrelated to the Fable game; no such sentiment dataset exists. NOT A VALID SOURCE."
+  },
+  "competitive_landscape_2026_2027": [
+    {"title": "GTA VI", "date": "November 2026", "note": "The stated reason Fable moved out of holiday 2026"},
+    {"title": "The Witcher 4", "date": "not 2026; rumored 2027 (NOT CONFIRMED)", "note": "Closest big-RPG threat if it lands in 2027"},
+    {"title": "The Elder Scrolls VI", "date": "early development; 2028+ (per Todd Howard)", "note": "NOT a 2026/2027 competitor despite prompt's assumption"},
+    {"title": "Avowed (Obsidian)", "date": "released February 2025", "note": "Already out — the prompt's framing of it as a 2026 competitor is outdated"}
+  ],
+  "prompt_claims_verification": {
+    "release Autumn 2026": "OUTDATED — delayed to Feb 23, 2027 on May 29, 2026",
+    "1000+ NPCs": "CONFIRMED ('Living Population')",
+    "Bowerstone": "CONFIRMED",
+    "Bloodstone": "NOT CONFIRMED",
+    "Hobbes / Balverines": "CONFIRMED",
+    "Cockatrice": "CONFIRMED (new enemy)",
+    "melee/ranged/magic weave": "CONFIRMED ('style-weaving combat')",
+    "morality with consequences": "CONFIRMED (with perception twist)",
+    "PS5 platform": "CONFIRMED (day one)",
+    "PvP/PvE/multiplayer/co-op": "REFUTED — single-player only",
+    "game-within-a-game (property, romance, family)": "CONFIRMED"
+  },
+  "sources": [
+    "https://en.wikipedia.org/wiki/Fable_(2027_video_game)",
+    "https://variety.com/2026/gaming/news/new-fable-video-game-release-date-xbox-playstation-1236638159/",
+    "https://www.gamingbible.com/news/fable-release-date-gameplay-xbox-playstation-091525-20260122",
+    "https://www.techradar.com/gaming/the-new-fable-trailer-almost-brought-a-tear-to-my-eye-could-it-finally-be-the-game-that-was-promised-two-decades-ago",
+    "https://www.fablethegame.com/news/pre-order-fable-premium-edition-and-play-5-days-early",
+    "https://www.gamespot.com/articles/fable-premium-edition-preorders-include-5-day-early-access-to-the-full-game/",
+    "https://www.gamesradar.com/games/fable-pre-orders-are-live-and-the-collectors-edition-includes-a-jack-of-blades-statue-for-die-hard-fans/",
+    "https://gamerant.com/fable-premium-collectors-edition-ce-content-jack-blades/",
+    "https://store.playstation.com/en-us/product/UP6312-PPSA31381_00-0730774904492744",
+    "https://www.videogameschronicle.com/news/fable-has-been-delayed-to-2027/",
+    "https://gameinformer.com/2026/05/29/fable-delayed-to-february-2027",
+    "https://www.resetera.com/threads/fable-pushed-back-to-feb-2027.1533670/",
+    "https://gamerant.com/fable-reboot-no-co-op/",
+    "https://fandomwire.com/does-2026-fable-reboot-have-multiplayer/",
+    "https://www.military.com/off-duty/games/fable-reboot-lets-you-marry-almost-everyone.html",
+    "https://www.pcgamer.com/fable-4-reboot-guide/",
+    "https://screenrant.com/upcoming-rpgs-2027-release/"
+  ]
+}

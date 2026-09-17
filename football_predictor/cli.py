@@ -158,25 +158,42 @@ def evaluate(data_file: str, folds: int, blend: str) -> None:
     # Display fold results
     table = Table(title="Cross-Validation Results")
     table.add_column("Fold", style="cyan")
+    table.add_column("Train", justify="right")
+    table.add_column("Test", justify="right")
     table.add_column("RPS", justify="right")
     table.add_column("Accuracy", justify="right")
-    
+    table.add_column("Log loss", justify="right")
+    table.add_column("ECE", justify="right")
+
     for m in results["fold_metrics"]:
         table.add_row(
             str(m["fold"]),
+            str(m.get("train_samples", "-")),
+            str(m.get("test_samples", "-")),
             f"{m['rps']:.4f}",
-            f"{m['accuracy']:.2%}"
+            f"{m['accuracy']:.2%}",
+            f"{m['log_loss']:.4f}",
+            f"{m['ece']:.3f}",
         )
-    
+
     avg = results["average_metrics"]
-    table.add_row("---", "---", "---")
+    table.add_section()
     table.add_row(
         "[bold]Average[/]",
+        "",
+        "",
         f"[bold]{avg['rps']:.4f}[/]",
-        f"[bold]{avg['accuracy']:.2%}[/]"
+        f"[bold]{avg['accuracy']:.2%}[/]",
+        f"[bold]{avg['log_loss']:.4f}[/]",
+        f"[bold]{avg['ece']:.3f}[/]",
     )
-    
+
     console.print(table)
+    console.print(
+        "[dim]Each fold trains on every earlier match and scores the next block. "
+        "ECE is calibration error: how far the stated probabilities are from "
+        "observed frequencies.[/]"
+    )
 
 
 @main.command()

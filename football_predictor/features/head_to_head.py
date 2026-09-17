@@ -193,7 +193,7 @@ class HeadToHeadCalculator:
         """
         result = df.copy()
         result[date_col] = pd.to_datetime(result[date_col])
-        result = result.sort_values(date_col).reset_index(drop=True)
+        result = result.sort_values(date_col, kind="mergesort").reset_index(drop=True)
         
         # Initialize feature columns
         h2h_features = [

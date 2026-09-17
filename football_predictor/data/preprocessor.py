@@ -148,7 +148,7 @@ class DataPreprocessor:
         """
         result = df.copy()
         result["date"] = pd.to_datetime(result["date"])
-        result = result.sort_values("date").reset_index(drop=True)
+        result = result.sort_values("date", kind="mergesort").reset_index(drop=True)
         return result
     
     def handle_missing_values(

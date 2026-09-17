@@ -2,20 +2,31 @@
 
 A production-ready machine learning system for predicting football match outcomes (Home Win, Draw, Away Win) with calibrated probability estimates.
 
-**Target Metrics:**
+**Target metrics:** 52-56% accuracy, RPS below 0.22.
 
-- Accuracy: 52-56%
-- RPS (Ranked Probability Score): < 0.22
+> RPS here is the standard definition (sum of the first K-1 cumulative terms,
+> divided by K-1). Earlier versions of this project divided by K and included
+> the final always-zero term, which understated the score by a third and made
+> it incomparable with published numbers.
 
 ## Features
 
-- **Ensemble ML Models**: CatBoost + XGBoost + Logistic Regression with soft voting
-- **Comprehensive Feature Engineering**: Elo ratings, rolling stats, head-to-head, contextual features
-- **Probability Calibration**: Well-calibrated probability outputs
-- **Temporal Cross-Validation**: Prevents data leakage with expanding window CV
-- **API Integration**: Supports Sportmonks, API-Football, and CSV data
-- **CLI Interface**: Easy-to-use command-line tools
-- **SHAP Explainability**: Feature importance and prediction explanations
+- **Ensemble with a fitted blend**: CatBoost + XGBoost + logistic regression,
+  plus the Dixon-Coles goal model and the market's own prices as members.
+  Weights are fitted to minimize RPS on out-of-fold predictions, so a weak
+  member cannot drag the ensemble below its best one.
+- **Bookmaker odds**: de-vigged with Shin's method, the strongest publicly
+  available signal for match outcomes.
+- **Dixon-Coles goal model**: bivariate Poisson with time decay, both as a
+  feature source and as an ensemble member. Classifiers systematically
+  under-predict draws; a scoreline distribution does not.
+- **Feature engineering**: Elo ratings, rolling form, head-to-head, contextual
+  and experience features, with degenerate (all-empty) columns dropped.
+- **Honest probability calibration**: fitted on out-of-fold predictions, saved
+  and loaded with the model.
+- **Temporal cross-validation**: expanding windows that never look forward.
+- **Benchmark harness**: compares pipeline configurations on identical folds.
+- **CLI interface** and **SHAP explainability**.
 
 ## Installation
 
@@ -29,29 +40,70 @@ pip install -e ".[dev]"
 
 ## Quick Start
 
-### 1. Generate Sample Data
+### 1. Get data
+
+Real matches with bookmaker odds (free, no API key, many seasons):
 
 ```bash
-football-predictor generate-sample --output data/matches.csv --matches 500
+python scripts/fetch_odds_data.py --seasons 2018-2024
 ```
 
-### 2. Train Model
+Or simulate a league to try the pipeline without downloading anything. The
+simulated teams have latent strengths, so the data carries learnable signal,
+but its scores say nothing about real-world accuracy:
 
 ```bash
-football-predictor train data/matches.csv --output models/
+football-predictor generate-sample --output data/matches.csv --seasons 3
 ```
 
-### 3. Make Predictions
+### 2. Train
+
+```bash
+football-predictor train data/matches_with_odds.csv --output models/
+```
+
+The output reports each member's score on the holdout next to its blend
+weight, so it is visible at a glance when a member is not earning its place.
+
+### 3. Make predictions
 
 ```bash
 football-predictor predict fixtures.csv --model models/
 ```
 
-### 4. Evaluate with Cross-Validation
+Fixture rows may carry `odds_home`, `odds_draw` and `odds_away`; when they do,
+the market features are filled in and the prediction improves accordingly.
+
+### 4. Evaluate with cross-validation
 
 ```bash
-football-predictor evaluate data/matches.csv --folds 5
+football-predictor evaluate data/matches_with_odds.csv --folds 5
 ```
+
+### 5. Compare pipeline configurations
+
+```bash
+python scripts/benchmark.py --data data/matches_with_odds.csv
+```
+
+Runs every configuration on identical temporal folds, from the pre-audit
+behaviour to the full pipeline, alongside reference rows for the bookmakers'
+prices and for simply predicting the base rates.
+
+### 6. Tune hyperparameters
+
+```bash
+python scripts/optimize_hyperparams.py --data data/matches_with_odds.csv --trials 50
+```
+
+Trials are scored on temporal CV folds inside the training block; the final
+holdout is scored once, afterwards. Results land in `models/best_params.json`
+and are picked up automatically by the next training run.
+
+> The `models/best_params.json` committed to this repository predates the fix:
+> it was tuned with the holdout as the objective *and* the early-stopping set,
+> so those values are fitted to that particular block. Re-run the tuner on
+> your data before relying on them.
 
 ## Programmatic Usage
 
@@ -92,7 +144,14 @@ date,home_team,away_team,home_goals,away_goals,league,season
 
 **Required columns:** `date`, `home_team`, `away_team`, `home_goals`, `away_goals`
 
-**Optional columns:** `league`, `season`, `home_xg`, `away_xg`, `home_shots`, `away_shots`, `home_possession`, `away_possession`
+**Optional columns:** `league`, `season`, `odds_home`, `odds_draw`, `odds_away`,
+`home_xg`, `away_xg`, `home_shots`, `away_shots`, `home_possession`,
+`away_possession`
+
+Odds columns are decimal prices (2.10, not +110). `scripts/fetch_odds_data.py`
+writes them in this format. Columns that turn out to be empty for the whole
+dataset, such as xG when the source has none, are dropped rather than being
+filled with zeros and fed to the models as noise.
 
 ### Output CSV (Predictions)
 
@@ -117,28 +176,57 @@ FP_FEATURE_DECAY_FACTOR=0.95
 # Model Training
 FP_MODEL_CV_FOLDS=5
 FP_MODEL_EARLY_STOPPING_ROUNDS=50
+
+# Data sources (only needed for the football-data.org scripts)
+FOOTBALL_DATA_API_KEY=your_key_here
 ```
 
 ## Project Structure
 
 ```
 football_predictor/
-├── data/           # API clients, preprocessing, validation
-├── features/       # Elo, rolling stats, H2H, contextual features
-├── models/         # CatBoost, XGBoost, LogReg, ensemble
+├── data/           # API clients, football-data.co.uk loader, simulator
+├── features/       # Elo, rolling stats, H2H, contextual, odds, Dixon-Coles
+├── models/         # CatBoost, XGBoost, LogReg, Dixon-Coles, blending,
+│                   # calibration, tuned-parameter loading, ensemble
 ├── training/       # CV strategy, hyperopt, trainer
 ├── evaluation/     # Metrics (RPS, calibration), reporting
 ├── prediction/     # Prediction interface
 ├── explainability/ # SHAP explainer
 ├── cache/          # Feature store
 └── cli.py          # Command-line interface
+
+scripts/
+├── fetch_odds_data.py       # Historical matches with odds
+├── benchmark.py             # Compare pipeline configurations
+├── optimize_hyperparams.py  # Optuna tuning on temporal CV
+└── predict_today.py         # Predict today's fixtures
 ```
+
+## How the ensemble is trained
+
+1. Features are computed match by match in chronological order, so a match is
+   only ever described by earlier ones.
+2. The data is split chronologically; the test block is scored once, at the
+   end, and is never used for early stopping, calibration or blending.
+3. Members are trained on the training block. Temporal folds inside that
+   block produce out-of-fold predictions, which are used to fit each member's
+   calibration map and the blend weights. Fitting the blend on a single small
+   validation block made the weights swing wildly; out-of-fold predictions
+   give several times as much data to fit on.
+4. Blend weights minimize RPS over the simplex, so they can always fall back
+   on "everything to the best member". With `--blend stack` a logistic
+   meta-learner is tried as well and kept only when it scores better on the
+   same out-of-fold predictions.
 
 ## Running Tests
 
 ```bash
 pytest tests/ -v
 ```
+
+No test needs network access: data-dependent tests run against the simulator
+or small inline fixtures.
 
 ## License
 

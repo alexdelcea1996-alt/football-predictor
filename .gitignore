@@ -67,3 +67,12 @@ Thumbs.db
 
 # Local virtualenv
 .venv/
+
+# CatBoost training artifacts
+catboost_info/
+
+# Local virtualenv
+.venv/
+
+# Benchmark output
+models/benchmark.json

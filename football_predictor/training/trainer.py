@@ -15,7 +15,7 @@ from football_predictor.config import get_settings
 from football_predictor.data.preprocessor import DataPreprocessor
 from football_predictor.evaluation.metrics import calculate_all_metrics
 from football_predictor.features.aggregator import FeatureAggregator
-from football_predictor.models.ensemble import BlendMethod, EnsemblePredictor
+from football_predictor.models.ensemble import BlendMethod, BlendStrategy, EnsemblePredictor
 from football_predictor.training.cv_strategy import TemporalCrossValidator
 
 
@@ -23,14 +23,20 @@ class ModelTrainer:
     """
     Orchestrates the complete training pipeline.
 
-    Data is split chronologically into three blocks:
+    Data is split chronologically and the test block is touched only for the
+    final metrics. Previously the test set was passed as the early-stopping
+    and calibration set, which inflated the reported test scores.
+
+    With the default out-of-fold blending, members train on the whole
+    training block and calibration/blending are fitted on predictions from
+    temporal folds inside it:
+
+        [------------------ train ------------------][-- test --]
+
+    With ``blend_strategy="holdout"`` a validation block is carved out
+    instead, which is cheaper but fits the blend on far fewer rows:
 
         [------------ train ------------][-- val --][-- test --]
-
-    Members are fitted on train, early-stopped and calibrated on val, the
-    ensemble blend is fitted on val, and test is touched only for the final
-    metrics. Previously the test set was passed as the early-stopping and
-    calibration set, which inflated the reported test scores.
     """
 
     def __init__(self, output_dir: str | Path | None = None) -> None:
@@ -60,6 +66,7 @@ class ModelTrainer:
         val_size: float = 0.15,
         standings_df: pd.DataFrame | None = None,
         blend: BlendMethod = "weights",
+        blend_strategy: BlendStrategy = "oof",
         refit_on_full: bool = False,
     ) -> dict[str, Any]:
         """
@@ -68,10 +75,13 @@ class ModelTrainer:
         Args:
             df: Raw match data
             test_size: Final chronological holdout, used only for reporting
-            val_size: Block before the test set used for early stopping,
-                calibration and blend fitting
+            val_size: Validation block size, used only when
+                blend_strategy="holdout"
             standings_df: Optional standings data
             blend: "weights" (RPS-optimal), "stack" (meta-learner) or "equal"
+            blend_strategy: "oof" fits calibration and blending on out-of-fold
+                predictions (members keep all the training data); "holdout"
+                uses a single validation block
             refit_on_full: Refit members on train+val after the blend is
                 fitted (uses all data, keeps the held-out calibration maps)
 
@@ -87,13 +97,23 @@ class ModelTrainer:
 
         n = len(y)
         test_start = int(n * (1 - test_size))
-        val_start = int(test_start * (1 - val_size))
+
+        if blend_strategy == "holdout":
+            val_start = int(test_start * (1 - val_size))
+            X_val, y_val = X[val_start:test_start], y[val_start:test_start]
+        else:
+            # Out-of-fold blending uses the whole training block
+            val_start = test_start
+            X_val, y_val = X[:0], y[:0]
 
         X_train, y_train = X[:val_start], y[:val_start]
-        X_val, y_val = X[val_start:test_start], y[val_start:test_start]
         X_test, y_test = X[test_start:], y[test_start:]
 
-        self.ensemble = EnsemblePredictor(blend=blend, refit_on_full=refit_on_full)
+        self.ensemble = EnsemblePredictor(
+            blend=blend,
+            blend_strategy=blend_strategy,
+            refit_on_full=refit_on_full,
+        )
         self.ensemble.fit(
             X_train,
             y_train,
@@ -134,6 +154,7 @@ class ModelTrainer:
         n_folds: int = 5,
         standings_df: pd.DataFrame | None = None,
         blend: BlendMethod = "weights",
+        blend_strategy: BlendStrategy = "oof",
     ) -> dict[str, Any]:
         """
         Run temporal cross-validation.
@@ -154,7 +175,7 @@ class ModelTrainer:
             X_train, X_test = X[train_idx], X[test_idx]
             y_train, y_test = y[train_idx], y[test_idx]
 
-            model = EnsemblePredictor(blend=blend)
+            model = EnsemblePredictor(blend=blend, blend_strategy=blend_strategy)
             model.fit(X_train, y_train, feature_names)
 
             metrics = calculate_all_metrics(y_test, model.predict_proba(X_test))

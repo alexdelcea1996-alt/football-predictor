@@ -172,7 +172,7 @@ class CornersFeatureCalculator:
         """Process all matches and compute corner features."""
         df = df.copy()
         df["date"] = pd.to_datetime(df["date"])
-        df = df.sort_values("date").reset_index(drop=True)
+        df = df.sort_values("date", kind="mergesort").reset_index(drop=True)
         
         # Compute league average
         if "total_corners" in df.columns:

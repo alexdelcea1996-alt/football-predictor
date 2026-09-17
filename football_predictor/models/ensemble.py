@@ -12,15 +12,23 @@ from typing import Any, Literal, Sequence
 import numpy as np
 
 from football_predictor.config import get_settings
+from football_predictor.evaluation.metrics import ranked_probability_score
 from football_predictor.models.blending import StackingBlender, WeightBlender
+from football_predictor.models.calibration import ProbabilityCalibrator
+from football_predictor.models.column_model import KNOWN_SOURCES, ColumnProbabilityModel
 
 BlendMethod = Literal["weights", "stack", "equal"]
+BlendStrategy = Literal["oof", "holdout"]
 
 # Below this many validation rows, calibration and blend fitting are unreliable;
 # the ensemble then trains on all data and averages members equally.
 _MIN_VAL_SAMPLES = 60
 
+# Below this, walking folds leaves too little per fold to be worth the cost
+_MIN_OOF_SAMPLES = 300
+
 _MODEL_EXTENSIONS = {"catboost": "cbm", "xgboost": "json", "logistic": "joblib"}
+_COLUMN_MEMBER_EXTENSION = "joblib"
 
 
 class EnsemblePredictor:
@@ -45,6 +53,9 @@ class EnsemblePredictor:
         calibrate: bool = True,
         refit_on_full: bool = False,
         random_state: int = 42,
+        include_probability_members: bool = True,
+        blend_strategy: BlendStrategy = "oof",
+        blend_folds: int = 3,
     ) -> None:
         settings = get_settings()
         self.weights = list(weights) if weights is not None else list(settings.model.ensemble_weights)
@@ -53,11 +64,15 @@ class EnsemblePredictor:
         self.calibrate = calibrate
         self.refit_on_full = refit_on_full
         self.random_state = random_state
+        self.include_probability_members = include_probability_members
+        self.blend_strategy: BlendStrategy = blend_strategy
+        self.blend_folds = blend_folds
 
         self._models: list[tuple[str, Any]] = []
         self._feature_names: list[str] = []
         self._blender: WeightBlender | StackingBlender | None = None
         self._fitted_on_val = False
+        self._blend_fit_samples = 0
         self._trained = False
 
     # ------------------------------------------------------------------ fit
@@ -73,13 +88,20 @@ class EnsemblePredictor:
         """
         Train all available models and fit the blend.
 
+        With the default ``blend_strategy="oof"`` and no explicit validation
+        block, members train on all of X and the calibration maps and blend
+        weights are fitted on out-of-fold predictions from temporal folds
+        inside it. Supplying ``val_set`` (or ``blend_strategy="holdout"``)
+        switches to a single chronological validation block instead: cheaper,
+        but the blend is fitted on far fewer rows.
+
         Args:
             X: Feature matrix in chronological order
             y: Labels (0=Home, 1=Draw, 2=Away)
             feature_names: Feature names
             val_set: Optional explicit (X_val, y_val) block that must come
-                chronologically after X. When omitted, the last
-                ``val_fraction`` of X is held out for calibration/blending.
+                chronologically after X. When omitted under the holdout
+                strategy, the last ``val_fraction`` of X is held out.
             eval_set: Deprecated alias for ``val_set``. Passing the *test* set
                 here (as the trainer used to) leaks it into early stopping and
                 calibration.
@@ -98,7 +120,22 @@ class EnsemblePredictor:
 
         self._feature_names = feature_names or [f"f{i}" for i in range(X.shape[1])]
 
+        if self.blend_strategy == "oof" and val_set is None and len(y) >= _MIN_OOF_SAMPLES:
+            return self._fit_out_of_fold(X, y)
+
         X_fit, y_fit, X_val, y_val = self._split_for_validation(X, y, val_set)
+        return self._fit_holdout(X, y, X_fit, y_fit, X_val, y_val)
+
+    def _fit_holdout(
+        self,
+        X: np.ndarray,
+        y: np.ndarray,
+        X_fit: np.ndarray,
+        y_fit: np.ndarray,
+        X_val: np.ndarray | None,
+        y_val: np.ndarray | None,
+    ) -> "EnsemblePredictor":
+        """Fit members on an earlier block, calibrate and blend on a later one."""
         use_val = X_val is not None and len(y_val) >= _MIN_VAL_SAMPLES
 
         if not use_val:
@@ -107,7 +144,7 @@ class EnsemblePredictor:
         val_pair = (X_val, y_val) if use_val else None
         calib_pair = val_pair if (use_val and self.calibrate) else None
 
-        self._models = self._build_models()
+        self._models = self._build_models(self._feature_names)
         if not self._models:
             raise RuntimeError("No models available. Install catboost, xgboost, or scikit-learn.")
 
@@ -125,10 +162,14 @@ class EnsemblePredictor:
             member_probs = [model.predict_proba(X_val) for _, model in self._models]
             self._blender = self._fit_blender(member_probs, y_val)
             self._fitted_on_val = True
+            self._blend_fit_samples = int(len(y_val))
 
             if self.refit_on_full:
-                # Use every match for the final members; keep the calibrators
-                # and blend learned on the held-out block.
+                # Refit on every match, keeping the calibrators and blend from
+                # the held-out block. Benchmarked as clearly worse (the maps
+                # were learned from a model trained on less data, so they
+                # mis-sharpen the refitted one) - off by default, kept for
+                # experiments on much larger datasets.
                 for _, model in self._models:
                     calibrator = getattr(model, "calibrator", None)
                     model.fit(X, y, self._feature_names)
@@ -160,8 +201,67 @@ class EnsemblePredictor:
 
         return X[:split_idx], y[:split_idx], X[split_idx:], y[split_idx:]
 
-    def _build_models(self) -> list[tuple[str, Any]]:
-        """Instantiate whichever member models are installed."""
+    def _fit_out_of_fold(self, X: np.ndarray, y: np.ndarray) -> "EnsemblePredictor":
+        """
+        Fit calibration and blending on out-of-fold predictions.
+
+        A single held-out block is small: on a season or two of matches it is
+        a couple of hundred rows, and weights fitted there swing wildly (the
+        benchmark showed the best member being given zero weight). Walking
+        temporal folds over the training data instead produces several times
+        as many honest predictions to fit on, and lets the final members train
+        on every match rather than giving a fifth of them up.
+        """
+        from football_predictor.training.cv_strategy import TemporalCrossValidator
+
+        names = self._feature_names
+        template = self._build_models(names)
+        if not template:
+            raise RuntimeError("No models available. Install catboost, xgboost, or scikit-learn.")
+
+        member_names = [name for name, _ in template]
+        collected: dict[str, list[np.ndarray]] = {name: [] for name in member_names}
+        collected_y: list[np.ndarray] = []
+
+        cv = TemporalCrossValidator(n_splits=self.blend_folds)
+        for train_idx, test_idx in cv.split(X, y):
+            for name, model in self._build_models(names):
+                model.fit(X[train_idx], y[train_idx], names)
+                collected[name].append(_raw_probabilities(model, X[test_idx]))
+            collected_y.append(y[test_idx])
+
+        if not collected_y:
+            # Not enough data to walk folds; fall back to the holdout path
+            X_fit, y_fit, X_val, y_val = self._split_for_validation(X, y, None)
+            return self._fit_holdout(X, y, X_fit, y_fit, X_val, y_val)
+
+        oof_y = np.concatenate(collected_y)
+        oof_probs = {name: np.vstack(parts) for name, parts in collected.items()}
+
+        # Final members see every match
+        self._models = self._build_models(names)
+        for name, model in self._models:
+            model.fit(X, y, names)
+            if self.calibrate:
+                model.calibrator = ProbabilityCalibrator(
+                    method=getattr(model, "calibration_method", "isotonic")
+                ).fit(oof_probs[name], oof_y)
+
+        calibrated = [
+            model.calibrator.transform(oof_probs[name])
+            if getattr(model, "calibrator", None) is not None
+            else oof_probs[name]
+            for name, model in self._models
+        ]
+
+        self._blender = self._fit_blender(calibrated, oof_y)
+        self._fitted_on_val = True
+        self._blend_fit_samples = int(len(oof_y))
+        self._trained = True
+        return self
+
+    def _build_models(self, feature_names: list[str] | None = None) -> list[tuple[str, Any]]:
+        """Instantiate whichever member models are installed and applicable."""
         models: list[tuple[str, Any]] = []
 
         try:
@@ -182,6 +282,14 @@ class EnsemblePredictor:
         except ImportError:
             pass
 
+        # Probability columns (goal model, market prices) as members in their
+        # own right, so the blender can weight them against the classifiers
+        # instead of leaving them to be diluted as two features among eighty.
+        if self.include_probability_members and feature_names:
+            for name, columns in KNOWN_SOURCES.items():
+                if ColumnProbabilityModel.available(columns, feature_names):
+                    models.append((name, ColumnProbabilityModel(columns, name=name)))
+
         return models
 
     def _fit_blender(
@@ -189,19 +297,35 @@ class EnsemblePredictor:
         member_probs: list[np.ndarray],
         y_val: np.ndarray,
     ) -> WeightBlender | StackingBlender:
-        """Fit the configured blend on validation-set member probabilities."""
+        """
+        Fit the configured blend on validation-set member probabilities.
+
+        Fitted weights can always fall back on "everything to the best member",
+        so they cannot be beaten by a single member on the validation block.
+        A stacking meta-learner has no such guarantee, so it is kept only when
+        it actually scores better there.
+        """
         if self.blend == "equal":
             return WeightBlender([1.0] * len(member_probs))
 
-        if self.blend == "stack":
-            stacker = StackingBlender()
-            stacker.fit(member_probs, y_val)
-            if stacker.fitted:
-                return stacker
-            # Degenerate meta-fit: fall back to weights rather than failing
-            return WeightBlender().fit(member_probs, y_val)
+        weighted = WeightBlender().fit(member_probs, y_val)
 
-        return WeightBlender().fit(member_probs, y_val)
+        if self.blend != "stack":
+            return weighted
+
+        stacker = StackingBlender()
+        stacker.fit(member_probs, y_val)
+        if not stacker.fitted:
+            return weighted
+
+        stacked_score = ranked_probability_score(y_val, stacker.transform(member_probs))
+        weighted_score = ranked_probability_score(y_val, weighted.transform(member_probs))
+
+        if stacked_score < weighted_score:
+            return stacker
+
+        self.blend = "weights"  # so persistence reloads the right blender type
+        return weighted
 
     # -------------------------------------------------------------- predict
 
@@ -281,7 +405,9 @@ class EnsemblePredictor:
         """Describe the fitted blend (method, weights, whether it was fitted)."""
         info: dict[str, Any] = {
             "method": self.blend,
+            "strategy": self.blend_strategy,
             "fitted_on_validation": self._fitted_on_val,
+            "blend_fit_samples": self._blend_fit_samples,
             "members": self.get_models_info(),
         }
         if isinstance(self._blender, WeightBlender) and self._blender.weights is not None:
@@ -301,8 +427,13 @@ class EnsemblePredictor:
         path.mkdir(parents=True, exist_ok=True)
 
         for name, model in self._models:
-            if hasattr(model, "save"):
-                model.save(path / f"{name}.{_MODEL_EXTENSIONS.get(name, 'pkl')}")
+            if not hasattr(model, "save"):
+                continue
+            extension = (
+                _COLUMN_MEMBER_EXTENSION if name in KNOWN_SOURCES
+                else _MODEL_EXTENSIONS.get(name, "pkl")
+            )
+            model.save(path / f"{name}.{extension}")
 
         if self._blender is not None:
             self._blender.save(path / "blender.joblib")
@@ -312,8 +443,10 @@ class EnsemblePredictor:
             "feature_names": self._feature_names,
             "models": [name for name, _ in self._models],
             "blend": self.blend,
+            "blend_strategy": self.blend_strategy,
             "calibrate": self.calibrate,
             "fitted_on_validation": self._fitted_on_val,
+            "blend_fit_samples": self._blend_fit_samples,
             "blend_info": self.get_blend_info(),
         }
         with open(path / "ensemble_meta.json", "w") as f:
@@ -329,11 +462,21 @@ class EnsemblePredictor:
         self.weights = meta.get("weights", self.weights)
         self._feature_names = meta.get("feature_names", [])
         self.blend = meta.get("blend", self.blend)
+        self.blend_strategy = meta.get("blend_strategy", self.blend_strategy)
         self.calibrate = meta.get("calibrate", self.calibrate)
         self._fitted_on_val = meta.get("fitted_on_validation", False)
+        self._blend_fit_samples = meta.get("blend_fit_samples", 0)
         self._models = []
 
         for name in meta.get("models", []):
+            if name in KNOWN_SOURCES:
+                member_path = path / f"{name}.{_COLUMN_MEMBER_EXTENSION}"
+                if member_path.exists():
+                    self._models.append(
+                        (name, ColumnProbabilityModel(KNOWN_SOURCES[name], name=name).load(member_path))
+                    )
+                continue
+
             model_path = path / f"{name}.{_MODEL_EXTENSIONS.get(name, 'pkl')}"
             if not model_path.exists():
                 continue
@@ -370,3 +513,10 @@ class EnsemblePredictor:
 
         self._trained = bool(self._models)
         return self
+
+
+def _raw_probabilities(model: Any, X: np.ndarray) -> np.ndarray:
+    """Uncalibrated probabilities, for members that expose them."""
+    if hasattr(model, "predict_proba_raw"):
+        return model.predict_proba_raw(X)
+    return model.predict_proba(X)

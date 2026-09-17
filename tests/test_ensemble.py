@@ -130,3 +130,42 @@ class TestEnsemble:
     def test_not_trained_error(self):
         with pytest.raises(RuntimeError, match="not trained"):
             EnsemblePredictor().predict_proba(np.random.randn(10, 5))
+
+
+class TestOutOfFoldBlending:
+    """The default strategy: calibrate and blend on out-of-fold predictions."""
+
+    @pytest.fixture(scope="class")
+    def oof_ensemble(self, sample_data):
+        X, y, names = sample_data
+        return EnsemblePredictor(blend_strategy="oof", blend_folds=3).fit(
+            X[:700], y[:700], names
+        )
+
+    def test_blend_is_fitted_on_more_rows_than_a_holdout(self, sample_data, oof_ensemble):
+        X, y, names = sample_data
+        holdout = EnsemblePredictor(blend_strategy="holdout").fit(X[:700], y[:700], names)
+
+        oof_rows = oof_ensemble.get_blend_info()["blend_fit_samples"]
+        holdout_rows = holdout.get_blend_info()["blend_fit_samples"]
+
+        assert oof_rows > holdout_rows
+
+    def test_members_see_all_training_data(self, sample_data, oof_ensemble):
+        """Unlike the holdout strategy, no rows are given up to a val block."""
+        X, y, names = sample_data
+        probs = oof_ensemble.predict_proba(X[700:])
+
+        assert probs.shape == (200, 3)
+        assert oof_ensemble.get_blend_info()["strategy"] == "oof"
+
+    def test_members_are_calibrated(self, oof_ensemble):
+        for _, model in oof_ensemble._models:
+            assert model.calibrator is not None
+
+    def test_small_dataset_falls_back_to_holdout(self, sample_data):
+        X, y, names = sample_data
+        ensemble = EnsemblePredictor(blend_strategy="oof").fit(X[:250], y[:250], names)
+
+        assert ensemble.get_blend_info()["strategy"] == "oof"  # requested
+        assert ensemble.predict_proba(X[250:260]).shape == (10, 3)

@@ -5,6 +5,8 @@ Prediction interface for upcoming fixtures.
 from pathlib import Path
 from typing import Any
 import json
+
+import numpy as np
 import pandas as pd
 
 from football_predictor.features.aggregator import FeatureAggregator
@@ -68,17 +70,23 @@ class MatchPredictor:
         predictions = []
         
         for fixture in fixtures:
-            # Get features
+            # Get features, including market odds when the fixture carries them
             features = self.feature_aggregator.get_features_for_match(
                 home_team=fixture["home_team"],
                 away_team=fixture["away_team"],
                 match_date=fixture["date"],
                 match_week=fixture.get("match_week"),
+                odds=_fixture_odds(fixture),
             )
-            
-            # Convert to array
+
+            # Convert to array. Missing features are NaN, not None: `nan or 0`
+            # evaluates to nan (NaN is truthy), which reaches the models as a
+            # missing value and breaks the linear ones.
             feature_names = self.feature_aggregator.feature_names
-            X = [[features.get(f, 0) or 0 for f in feature_names]]
+            X = np.array(
+                [[_as_float(features.get(name)) for name in feature_names]],
+                dtype=float,
+            )
             
             # Predict
             probs = self.ensemble.predict_proba(X)[0]
@@ -113,3 +121,26 @@ class MatchPredictor:
         preds = self.predict_fixtures(fixtures)
         df = pd.DataFrame(preds)
         df.to_csv(output_path, index=False)
+
+
+def _as_float(value: Any) -> float:
+    """Feature value as a finite float; anything missing becomes 0.0."""
+    if value is None:
+        return 0.0
+    try:
+        number = float(value)
+    except (TypeError, ValueError):
+        return 0.0
+    return number if np.isfinite(number) else 0.0
+
+
+def _fixture_odds(fixture: dict[str, Any]) -> tuple[float, float, float] | None:
+    """Pull decimal odds out of a fixture record when present."""
+    values = [fixture.get(key) for key in ("odds_home", "odds_draw", "odds_away")]
+    if any(value is None for value in values):
+        return None
+    try:
+        odds = tuple(float(value) for value in values)
+    except (TypeError, ValueError):
+        return None
+    return odds if all(np.isfinite(o) and o > 1.0 for o in odds) else None

@@ -132,22 +132,24 @@ class TestEnsemble:
             EnsemblePredictor().predict_proba(np.random.randn(10, 5))
 
 
+@pytest.fixture(scope="module")
+def oof_ensemble(sample_data):
+    X, y, names = sample_data
+    return EnsemblePredictor(blend_strategy="oof", blend_folds=3).fit(X[:700], y[:700], names)
+
+
+@pytest.fixture(scope="module")
+def holdout_ensemble(sample_data):
+    X, y, names = sample_data
+    return EnsemblePredictor(blend_strategy="holdout").fit(X[:700], y[:700], names)
+
+
 class TestOutOfFoldBlending:
     """The default strategy: calibrate and blend on out-of-fold predictions."""
 
-    @pytest.fixture(scope="class")
-    def oof_ensemble(self, sample_data):
-        X, y, names = sample_data
-        return EnsemblePredictor(blend_strategy="oof", blend_folds=3).fit(
-            X[:700], y[:700], names
-        )
-
-    def test_blend_is_fitted_on_more_rows_than_a_holdout(self, sample_data, oof_ensemble):
-        X, y, names = sample_data
-        holdout = EnsemblePredictor(blend_strategy="holdout").fit(X[:700], y[:700], names)
-
+    def test_blend_is_fitted_on_more_rows_than_a_holdout(self, oof_ensemble, holdout_ensemble):
         oof_rows = oof_ensemble.get_blend_info()["blend_fit_samples"]
-        holdout_rows = holdout.get_blend_info()["blend_fit_samples"]
+        holdout_rows = holdout_ensemble.get_blend_info()["blend_fit_samples"]
 
         assert oof_rows > holdout_rows
 

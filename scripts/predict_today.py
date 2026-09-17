@@ -14,6 +14,8 @@ from rich.console import Console
 from rich.table import Table
 from rich.panel import Panel
 
+from football_predictor.prediction.predictor import as_feature_value
+
 console = Console()
 
 
@@ -108,9 +110,10 @@ def main():
         away = match["away_team"]
         match_date = match["date"]
         
-        # Get features
+        # Get features. `nan or 0` is nan (NaN is truthy), so missing values
+        # have to be coerced explicitly or they reach the models as NaN.
         features = aggregator.get_features_for_match(home, away, match_date)
-        X = np.array([[features.get(f, 0) or 0 for f in feature_names]])
+        X = np.array([[as_feature_value(features.get(name)) for name in feature_names]])
         
         probs = ensemble.predict_proba(X)[0]
         pred_class = int(probs.argmax())

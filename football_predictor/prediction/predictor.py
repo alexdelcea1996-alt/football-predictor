@@ -76,7 +76,7 @@ class MatchPredictor:
                 away_team=fixture["away_team"],
                 match_date=fixture["date"],
                 match_week=fixture.get("match_week"),
-                odds=_fixture_odds(fixture),
+                odds=fixture_odds(fixture),
             )
 
             # Convert to array. Missing features are NaN, not None: `nan or 0`
@@ -84,7 +84,7 @@ class MatchPredictor:
             # missing value and breaks the linear ones.
             feature_names = self.feature_aggregator.feature_names
             X = np.array(
-                [[_as_float(features.get(name)) for name in feature_names]],
+                [[as_feature_value(features.get(name)) for name in feature_names]],
                 dtype=float,
             )
             
@@ -123,7 +123,7 @@ class MatchPredictor:
         df.to_csv(output_path, index=False)
 
 
-def _as_float(value: Any) -> float:
+def as_feature_value(value: Any) -> float:
     """Feature value as a finite float; anything missing becomes 0.0."""
     if value is None:
         return 0.0
@@ -134,7 +134,7 @@ def _as_float(value: Any) -> float:
     return number if np.isfinite(number) else 0.0
 
 
-def _fixture_odds(fixture: dict[str, Any]) -> tuple[float, float, float] | None:
+def fixture_odds(fixture: dict[str, Any]) -> tuple[float, float, float] | None:
     """Pull decimal odds out of a fixture record when present."""
     values = [fixture.get(key) for key in ("odds_home", "odds_draw", "odds_away")]
     if any(value is None for value in values):

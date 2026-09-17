@@ -4,7 +4,11 @@ import numpy as np
 import pytest
 
 from football_predictor.data.simulator import simulate_league
-from football_predictor.prediction.predictor import MatchPredictor, _as_float, _fixture_odds
+from football_predictor.prediction.predictor import (
+    MatchPredictor,
+    as_feature_value,
+    fixture_odds,
+)
 from football_predictor.training.trainer import ModelTrainer
 
 
@@ -21,21 +25,21 @@ def trained_model(tmp_path_factory):
 class TestValueCoercion:
     def test_missing_values_become_zero(self):
         """`nan or 0` is nan, which used to reach the models as a missing value."""
-        assert _as_float(None) == 0.0
-        assert _as_float(np.nan) == 0.0
-        assert _as_float(np.inf) == 0.0
-        assert _as_float("nonsense") == 0.0
+        assert as_feature_value(None) == 0.0
+        assert as_feature_value(np.nan) == 0.0
+        assert as_feature_value(np.inf) == 0.0
+        assert as_feature_value("nonsense") == 0.0
 
     def test_real_values_pass_through(self):
-        assert _as_float(2.5) == 2.5
-        assert _as_float(0) == 0.0
+        assert as_feature_value(2.5) == 2.5
+        assert as_feature_value(0) == 0.0
 
     def test_fixture_odds_extraction(self):
-        assert _fixture_odds({"odds_home": 2.1, "odds_draw": 3.4, "odds_away": 3.6}) == (
+        assert fixture_odds({"odds_home": 2.1, "odds_draw": 3.4, "odds_away": 3.6}) == (
             2.1, 3.4, 3.6
         )
-        assert _fixture_odds({"odds_home": 2.1}) is None
-        assert _fixture_odds({"odds_home": 0.5, "odds_draw": 3.4, "odds_away": 3.6}) is None
+        assert fixture_odds({"odds_home": 2.1}) is None
+        assert fixture_odds({"odds_home": 0.5, "odds_draw": 3.4, "odds_away": 3.6}) is None
 
 
 class TestMatchPredictor:

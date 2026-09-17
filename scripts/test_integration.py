@@ -4,6 +4,7 @@ Test script for Football Predictor with real data.
 Uses football-data.org API to fetch matches and test the prediction pipeline.
 """
 
+import os
 import sys
 from pathlib import Path
 
@@ -21,7 +22,9 @@ def test_api_connection():
     """Test API connectivity."""
     from football_predictor.data.football_data_client import FootballDataClient
     
-    API_KEY = "1b3e20f99212447dba6016eb1810f054"
+    API_KEY = os.environ.get("FOOTBALL_DATA_API_KEY", "")
+    if not API_KEY:
+        raise SystemExit("Set FOOTBALL_DATA_API_KEY (free key at football-data.org)")
     
     console.print("\n[bold blue]Testing Football-Data.org API connection...[/]")
     

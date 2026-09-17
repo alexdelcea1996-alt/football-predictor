@@ -6,6 +6,8 @@ import sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
+import os
+
 import pandas as pd
 from rich.console import Console
 import time
@@ -17,7 +19,10 @@ def main():
     """Fetch data from multiple seasons."""
     from football_predictor.data.football_data_client import FootballDataClient
     
-    API_KEY = "1b3e20f99212447dba6016eb1810f054"
+    API_KEY = os.environ.get("FOOTBALL_DATA_API_KEY", "")
+    if not API_KEY:
+        console.print("[red]Set FOOTBALL_DATA_API_KEY (get a free key at football-data.org).[/]")
+        return
     client = FootballDataClient(API_KEY)
     
     console.print("[bold blue]Fetching Multi-Season Historical Data[/]")

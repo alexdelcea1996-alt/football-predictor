@@ -13,35 +13,58 @@ def ranked_probability_score(
     y_proba: np.ndarray,
 ) -> float:
     """
-    Calculate Ranked Probability Score (RPS).
-    
-    RPS measures how well-calibrated probability predictions are
-    for ordered outcomes. Lower is better.
-    
-    Formula: RPS = (1/K) * sum((CDF_predicted - CDF_actual)^2)
-    
+    Calculate the Ranked Probability Score (RPS).
+
+    RPS measures how well-calibrated probability predictions are for ordered
+    outcomes (Home < Draw < Away). Lower is better; 0 is perfect.
+
+    Formula (Epstein 1969, as used in the football forecasting literature):
+
+        RPS = 1/(K-1) * sum_{i=1}^{K-1} (CDF_pred_i - CDF_true_i)^2
+
+    Note the sum runs over the first K-1 categories only: the K-th cumulative
+    term is 1 for both prediction and outcome, so including it (and dividing
+    by K) understates the score by a factor of (K-1)/K. For K=3 that is a
+    factor of 2/3, which makes results incomparable with published RPS values.
+
     Args:
-        y_true: True class labels (0, 1, 2)
+        y_true: True class labels (0=Home, 1=Draw, 2=Away)
         y_proba: Predicted probabilities, shape (n_samples, 3)
-    
+
     Returns:
         Mean RPS across all samples (lower is better)
     """
+    return float(np.mean(ranked_probability_score_per_sample(y_true, y_proba)))
+
+
+def ranked_probability_score_per_sample(
+    y_true: np.ndarray,
+    y_proba: np.ndarray,
+) -> np.ndarray:
+    """
+    Per-sample RPS, useful for error analysis and significance testing.
+
+    Returns:
+        Array of shape (n_samples,) with the RPS of each prediction
+    """
+    y_true = np.asarray(y_true)
+    y_proba = np.asarray(y_proba, dtype=float)
+
     n_samples = len(y_true)
     n_classes = y_proba.shape[1]
-    
-    # Create one-hot encoding of true labels
+
+    if n_classes < 2:
+        raise ValueError("RPS requires at least 2 classes")
+
+    # One-hot encoding of true labels
     y_onehot = np.zeros((n_samples, n_classes))
     y_onehot[np.arange(n_samples), y_true.astype(int)] = 1
-    
-    # Calculate cumulative distributions
-    cdf_pred = np.cumsum(y_proba, axis=1)
-    cdf_true = np.cumsum(y_onehot, axis=1)
-    
-    # RPS for each sample
-    rps_per_sample = np.mean((cdf_pred - cdf_true) ** 2, axis=1)
-    
-    return float(np.mean(rps_per_sample))
+
+    # Cumulative distributions, dropping the final (always 1) term
+    cdf_pred = np.cumsum(y_proba, axis=1)[:, :-1]
+    cdf_true = np.cumsum(y_onehot, axis=1)[:, :-1]
+
+    return np.sum((cdf_pred - cdf_true) ** 2, axis=1) / (n_classes - 1)
 
 
 def calibration_error(

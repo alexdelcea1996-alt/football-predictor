@@ -93,3 +93,44 @@ class TestMetrics:
         
         assert 0 <= metrics["accuracy"] <= 1
         assert metrics["rps"] > 0
+
+
+class TestRPSDefinition:
+    """Locks the standard RPS definition (sum of K-1 CDF terms / (K-1))."""
+
+    def test_known_value(self):
+        # p = (0.5, 0.3, 0.2), outcome = Draw
+        # CDF_pred = (0.5, 0.8); CDF_true = (0, 1)
+        # RPS = (0.25 + 0.04) / 2 = 0.145
+        rps = ranked_probability_score(
+            np.array([1]), np.array([[0.5, 0.3, 0.2]])
+        )
+        assert rps == pytest.approx(0.145)
+
+    def test_uniform_forecast_matches_analytic_value(self):
+        # Uniform probabilities over an equal mix of outcomes: 2/9
+        y_true = np.array([0, 1, 2])
+        y_proba = np.ones((3, 3)) / 3.0
+        assert ranked_probability_score(y_true, y_proba) == pytest.approx(2 / 9)
+
+    def test_maximum_is_one(self):
+        # Certain and completely wrong: home predicted, away happened
+        rps = ranked_probability_score(
+            np.array([2]), np.array([[1.0, 0.0, 0.0]])
+        )
+        assert rps == pytest.approx(1.0)
+
+    def test_per_sample_matches_mean(self):
+        from football_predictor.evaluation.metrics import (
+            ranked_probability_score_per_sample,
+        )
+
+        rng = np.random.default_rng(11)
+        y_true = rng.integers(0, 3, 50)
+        y_proba = rng.dirichlet([1, 1, 1], 50)
+
+        per_sample = ranked_probability_score_per_sample(y_true, y_proba)
+        assert len(per_sample) == 50
+        assert per_sample.mean() == pytest.approx(
+            ranked_probability_score(y_true, y_proba)
+        )

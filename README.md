@@ -203,6 +203,36 @@ scripts/
 └── predict_today.py         # Predict today's fixtures
 ```
 
+## What the changes are worth
+
+`scripts/benchmark.py` on four simulated seasons (1,520 matches, three
+temporal folds). These numbers validate the pipeline, **not** real-world
+accuracy: the simulated market is close to the truth by construction, so treat
+the reference rows as an upper bound rather than a forecast of what you will
+achieve. Re-run it on your own downloaded data.
+
+| Configuration | Accuracy | RPS | Draw F1 | |
+|---|---|---|---|---|
+| `legacy` | 53.0% | 0.2005 | 0.017 | pre-audit behaviour |
+| `fixed` | 52.4% | 0.2038 | 0.017 | fitted blend + calibration |
+| `poisson_features` | 50.9% | 0.2058 | 0.017 | Dixon-Coles as features |
+| `poisson_member` | 53.8% | 0.1973 | 0.000 | Dixon-Coles as a member |
+| `odds_features` | 52.6% | 0.2002 | 0.065 | odds as features |
+| `odds_member` | 55.7% | 0.1922 | 0.043 | odds as a member |
+| **`full`** | **55.6%** | **0.1921** | 0.051 | odds + Dixon-Coles as members |
+| `full+stacking` | 54.5% | 0.1933 | 0.072 | meta-learner blend |
+| *reference: market* | 53.8% | 0.1895 | 0.050 | the bookmakers' own prices |
+| *reference: dixon_coles* | 53.7% | 0.1950 | 0.050 | goal model alone |
+| *reference: class_prior* | 47.4% | 0.2266 | 0.000 | predicting base rates |
+
+Two things stand out. Handing a probability source to the blender as a member
+beats feeding it to the classifiers as features, for both the market
+(0.1922 vs 0.2002) and the goal model (0.1973 vs 0.2058) - as features they
+are two columns among eighty, as members they are weighted on their merits.
+The fitted weights reflect that: the market member takes about 0.58 of the
+full blend and the goal model 0.07, with the rest going to XGBoost and the
+logistic model.
+
 ## How the ensemble is trained
 
 1. Features are computed match by match in chronological order, so a match is
